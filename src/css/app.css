@@ -2,9 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Chillax';
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	src: local('Chillax'), url('../fonts/Chillax-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Chillax';
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+	src: local('Chillax'), url('../fonts/Chillax-Semibold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Chillax';
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	src: local('Chillax'), url('../fonts/Chillax-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Synonym';
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	src: local('Synonym'), url('../fonts/Synonym-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Synonym';
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+	src: local('Synonym'), url('../fonts/Synonym-Semibold.woff2') format('woff2');
+}
+
 @layer base {
 	body {
-		@apply text-base font-medium text-neutral-900 bg-background antialiased;
+		@apply text-base font-body text-neutral-900 bg-background antialiased;
 	}
 
 	a {
@@ -116,5 +156,9 @@
 
 	.navbar-mobile-menu-button__open .line-02 {
 		transform: rotate(-45deg);
+	}
+
+	.flag-pattern {
+		@apply my-16 h-120 rounded-16 bg-[url('../images/flag-pattern.svg')];
 	}
 }

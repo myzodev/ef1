@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-	content: ['index.html', 'src/**/*.js'],
+	content: ['views/**/*.html', 'src/**/*.js'],
 	theme: {
 		extend: {
 			gridTemplateColumns: {
@@ -49,8 +49,8 @@ module.exports = {
 		},
 
 		fontFamily: {
-			heading: ['Khand', 'sans-serif'],
-			body: ['Switzer', 'sans-serif'],
+			heading: ['Chillax', 'sans-serif'],
+			body: ['Synonym', 'sans-serif'],
 		},
 
 		fontSize: {
