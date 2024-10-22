@@ -44,7 +44,11 @@
 
 @layer base {
 	body {
-		@apply text-base font-body text-neutral-900 bg-background antialiased;
+		@apply h-[500vh] text-base font-body text-neutral-900 bg-background antialiased;
+	}
+
+	main {
+		@apply pt-96 xl:pt-[98px];
 	}
 
 	a {

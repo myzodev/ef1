@@ -34,11 +34,7 @@ module.exports = {
 
 		container: {
 			center: true,
-			padding: {
-				DEFAULT: '1.5rem',
-				sm: '2rem',
-				lg: '1.5rem',
-			},
+			padding: '1rem',
 		},
 
 		screens: {
@@ -175,13 +171,14 @@ module.exports = {
 
 	plugins: [
 		require('@tailwindcss/aspect-ratio'),
+		require('@tailwindcss/line-clamp'),
 
 		plugin(function ({ addComponents, theme }) {
 			addComponents({
 				'.h1': {
 					fontSize: '3rem',
 					fontFamily: theme('fontFamily.heading'),
-					fontWeight: theme('fontWeight.bold'),
+					fontWeight: theme('fontWeight.semibold'),
 					lineHeight: '115%',
 					'@media (min-width: 768px)': {
 						fontSize: '3.81rem',
@@ -191,7 +188,7 @@ module.exports = {
 				'.h2': {
 					fontSize: '2.5rem',
 					fontFamily: theme('fontFamily.heading'),
-					fontWeight: theme('fontWeight.bold'),
+					fontWeight: theme('fontWeight.semibold'),
 					lineHeight: '115%',
 					'@media (min-width: 768px)': {
 						fontSize: '3rem',
@@ -201,7 +198,7 @@ module.exports = {
 				'.h3': {
 					fontSize: '2.1rem',
 					fontFamily: theme('fontFamily.heading'),
-					fontWeight: theme('fontWeight.bold'),
+					fontWeight: theme('fontWeight.semibold'),
 					lineHeight: '115%',
 					'@media (min-width: 768px)': {
 						fontSize: '2.44rem',
@@ -211,7 +208,7 @@ module.exports = {
 				'.h4': {
 					fontSize: '1.75rem',
 					fontFamily: theme('fontFamily.heading'),
-					fontWeight: theme('fontWeight.bold'),
+					fontWeight: theme('fontWeight.semibold'),
 					lineHeight: '115%',
 					'@media (min-width: 768px)': {
 						fontSize: '1.94rem',
@@ -221,7 +218,7 @@ module.exports = {
 				'.h5': {
 					fontSize: '1.44rem',
 					fontFamily: theme('fontFamily.heading'),
-					fontWeight: theme('fontWeight.bold'),
+					fontWeight: theme('fontWeight.semibold'),
 					lineHeight: '115%',
 					'@media (min-width: 768px)': {
 						fontSize: '1.56rem',
@@ -231,7 +228,7 @@ module.exports = {
 				'.h6': {
 					fontSize: '1.25rem',
 					fontFamily: theme('fontFamily.heading'),
-					fontWeight: theme('fontWeight.bold'),
+					fontWeight: theme('fontWeight.semibold'),
 					lineHeight: '115%',
 					'@media (max-width: 768px)': {
 						fontSize: '1.19rem',
