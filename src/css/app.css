@@ -95,7 +95,7 @@
 	}
 
 	.navbar-mobile-menu-button {
-		@apply p-16 -mr-16 block lg:hidden z-90;
+		@apply p-16 -mr-16 block xl:hidden z-90;
 	}
 
 	.navbar-mobile-menu-button .line {
