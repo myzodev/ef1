@@ -1,0 +1,10 @@
+# Folders
+assets/
+
+# Dependency directories
+node_modules/
+
+# Dependency files
+mix-manifest.json
+
+*.local
