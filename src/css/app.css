@@ -165,4 +165,16 @@
 	.flag-pattern {
 		@apply my-16 h-120 rounded-16 bg-[url('../images/flag-pattern.svg')];
 	}
+
+	.link-overlay:before {
+		@apply content-[''] absolute inset-0 z-0;
+	}
+
+	.link-overlay-box {
+		@apply relative;
+	}
+
+	.link-overlay-box a:not(.link-overlay) {
+		@apply relative z-10;
+	}
 }
