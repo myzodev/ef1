@@ -4,10 +4,6 @@ module.exports = {
 	content: ['views/**/*.html', 'src/**/*.js'],
 	theme: {
 		extend: {
-			gridTemplateColumns: {
-				18: 'repeat(18, minmax(0, 1fr))',
-			},
-
 			zIndex: {
 				60: '60',
 				70: '70',
@@ -20,15 +16,9 @@ module.exports = {
 				400: '400ms',
 			},
 
-			animation: {
-				'infinite-scroll': 'slide 3s linear infinite',
-			},
-
-			keyframes: {
-				slide: {
-					from: { transform: 'translateX(0)' },
-					to: { transform: 'translateX(-100%)' },
-				},
+			borderWidth: {
+				10: '10px',
+				16: '16px',
 			},
 		},
 
@@ -122,6 +112,7 @@ module.exports = {
 			4: '4px',
 			6: '6px',
 			8: '8px',
+			10: '10px',
 			16: '16px',
 			24: '24px',
 			32: '32px',
