@@ -135,7 +135,11 @@
 	}
 
 	.navbar-menu-link {
-		@apply block text-[2.44rem] sm:text-[3.22rem] xl:text-[0.88rem] font-semibold leading-none text-neutral-10;
+		@apply block relative text-[2.44rem] sm:text-[3.22rem] xl:text-[0.88rem] font-semibold leading-none text-neutral-10 transition-opacity hover:opacity-80;
+	}
+
+	.navbar-menu-link.active::before {
+		@apply content-[''] size-4 absolute left-1/2 -bottom-10 -translate-x-1/2 rounded-full bg-neutral-10;
 	}
 
 	.navbar-mobile-menu-button {
