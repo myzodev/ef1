@@ -5,6 +5,8 @@ const counter = () => {
 
 	const countDownDate = new Date('Jan 5, 2050 12:00:00').getTime()
 
+	if (!countDownHrs || !countDownMin || !countDownSec) return
+
 	const updateTimer = () => {
 		const now = new Date().getTime()
 

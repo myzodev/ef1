@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../assets/css/app.css" />
+		<script src="../assets/js/app.js"></script>
+		<title>EF1</title>
+	</head>
+	<body>
+		<section class="xl:p-24 h-screen flex justify-center relative">
+			<div class="px-32 w-full max-w-[400px] flex items-center relative">
+				<aside class="w-full absolute left-1/2 bottom-24 xl:bottom-0 -translate-x-1/2">
+					<p class="text-sm text-center text-neutral-100">
+						Already have an account?
+						<a class="underline text-primary-300 hover:text-primary-100 transition-colors duration-300" href="./login.html">
+							Login
+						</a>
+					</p>
+				</aside>
+
+				<div class="w-full">
+					<article class="mb-24 text-center">
+						<a
+							class="text-sm underline text-primary-300 hover:text-primary-100 transition-colors duration-300"
+							href="./index.html"
+						>
+							Back home
+						</a>
+
+						<h2>Register</h2>
+					</article>
+
+					<form class="gap-8 w-full flex flex-col" action="">
+						<input type="text" placeholder="Name" name="name" required />
+						<input type="email" placeholder="Email" name="email" required />
+						<input type="password" placeholder="Password" name="password" required />
+						<button class="button button-base button-primary w-full" type="submit">Create account</button>
+					</form>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

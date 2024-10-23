@@ -181,4 +181,12 @@
 	.link-overlay-box a:not(.link-overlay) {
 		@apply relative z-10;
 	}
+
+	input {
+		@apply !rounded-6 !border-neutral-100;
+	}
+
+	input:focus {
+		@apply !ring-0 !outline-none !border-primary-300;
+	}
 }

@@ -2,6 +2,8 @@ const tabs = () => {
 	const tabsButtons = document.querySelectorAll('#tabs button')
 	const tabs = document.querySelectorAll('#tabs [id^="tab"]')
 
+	if (!tabsButtons || !tabs) return
+
 	tabsButtons.forEach((button) => {
 		const tabID = `tab-${button.dataset.showTab}`
 		const correspondingTab = document.getElementById(tabID)
