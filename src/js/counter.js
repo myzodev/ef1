@@ -3,11 +3,15 @@ const counter = () => {
 	const countDownMin = document.getElementById('count-down-min')
 	const countDownSec = document.getElementById('count-down-sec')
 
-	const countDownDate = new Date('Jan 5, 2050 12:00:00').getTime()
+	const countDownDate = new Date('Dec 31, 2050 23:59:59').getTime()
 
 	if (!countDownHrs || !countDownMin || !countDownSec) return
 
-	const updateTimer = () => {
+	const x = setInterval(updateTimer, 1000)
+
+	updateTimer()
+
+	function updateTimer() {
 		const now = new Date().getTime()
 
 		const distance = countDownDate - now
@@ -21,13 +25,13 @@ const counter = () => {
 		countDownSec.textContent = seconds
 
 		if (distance < 0) {
+			countDownHrs.textContent = '0'
+			countDownMin.textContent = '0'
+			countDownSec.textContent = '0'
+
 			clearInterval(x)
 		}
 	}
-
-	updateTimer()
-
-	const x = setInterval(updateTimer, 1000)
 }
 
 export default counter
