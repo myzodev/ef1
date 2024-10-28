@@ -1,0 +1,457 @@
+<%- include('./includes/components/counter') %>
+
+<section class="container">
+    <div class="flag-pattern"></div>
+</section>
+
+<section class="container gap-16 grid grid-cols-1 lg:grid-cols-2 items-start">
+    <a class="relative lg:sticky lg:top-80 rounded-16 overflow-hidden group" href="/news-item">
+        <figure class="aspect-w-4 aspect-h-4 lg:aspect-h-3">
+            <img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-4.webp" alt="" />
+        </figure>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20"></div>
+
+        <article class="p-24 absolute left-0 bottom-0 text-neutral-10">
+            <small class="px-5 py-2 mb-8 inline-block font-bold rounded-4 bg-primary-300">News</small>
+            <h4>Norris rues ‘shocking’ Sprint Qualifying lap in Austin as he admits ‘struggling the whole day’</h4>
+        </article>
+    </a>
+
+    <div class="shrink-0">
+        <ul class="gap-16 grid grid-cols-2">
+            <%- include('includes/components/article.ejs') %>
+            <%- include('includes/components/article.ejs') %>
+            <%- include('includes/components/article.ejs') %>
+            <%- include('includes/components/article.ejs') %>
+            <%- include('includes/components/article.ejs') %>
+            <%- include('includes/components/article.ejs') %>
+        </ul>
+
+        <footer class="mt-24 text-center lg:text-left">
+            <a class="button button-primary button-sm" href="/news">Show latest news</a>
+        </footer>
+    </div>
+</section>
+
+<section class="overflow-hidden">
+    <div class="container mt-112">
+        <div class="p-24 lg:p-56 relative rounded-tl-24 text-neutral-10 bg-[#581C87]">
+            <article class="lg:w-1/2 relative z-30">
+                <h3>EXPLAINED: Everything you need to know about the 2024 F1</h3>
+
+                <p class="mt-16 mb-32">
+                    With the F1 Sprint back in action in Austin, here's a little refresher of the format in use for 2024...
+                </p>
+
+                <a class="button button-sm button-white" href="">Read more</a>
+            </article>
+
+            <div
+                class="w-[952px] h-full hidden lg:block absolute right-0 bottom-0 bg-gradient-to-r z-20 from-[#581C87] to-[#581C87]/0"
+            ></div>
+
+            <div
+                class="w-[calc(100%+8px)] lg:w-[calc(100%+16px)] h-[calc(100%+8px)] lg:h-[calc(100%+16px)] absolute right-0 bottom-0 border-l-4 lg:border-l-8 border-t-4 lg:border-t-8 rounded-tl-32 border-[#581C87]"
+            ></div>
+
+            <figure class="w-[1174px] xl:w-[1053px] hidden lg:block absolute -right-[223px] xl:-right-[101px] bottom-0 z-10">
+                <img src="../assets/images/cta-background.png" alt="" />
+            </figure>
+        </div>
+    </div>
+</section>
+
+<section class="mt-112 bg-neutral-30">
+    <div class="container py-112">
+        <div id="tabs">
+            <header class="gap-8 lg:gap-16 flex justify-center">
+                <button
+                    class="h6 p-16 w-full max-w-304 text-center border-t-2 border-l-2 rounded-tl-16 text-primary-300 border-primary-300 transition-colors"
+                    type="button"
+                    data-show-tab="drivers"
+                >
+                    DRIVERS
+                </button>
+                <button
+                    class="h6 p-16 w-full max-w-304 text-center border-r-2 border-b-2 rounded-br-16 text-neutral-60 border-neutral-60 transition-colors"
+                    type="button"
+                    data-show-tab="teams"
+                >
+                    TEAMS
+                </button>
+            </header>
+
+            <div id="tab-drivers">
+                <h3 class="mt-40 text-center">Driver Standings</h3>
+
+                <div class="mt-56 lg:mt-136 gap-56 lg:gap-16 flex flex-col lg:flex-row">
+                    <div class="order-1 lg:order-2">
+                        <figure class="relative border-r-4 border-t-4 border-[#3671C6] rounded-tr-24 bg-background">
+                            <img class="-mt-40 lg:-mt-112 h-auto" src="../assets/images/drivers/verstappen.png" alt="" />
+                            <p class="display absolute top-16 left-32 font-semibold text-[#3671C6]">1</p>
+                        </figure>
+
+                        <footer class="px-24 py-16 flex justify-between items-center rounded-bl-24 text-neutral-10 bg-[#3671C6]">
+                            <div class="shrink-0">
+                                <h6 class="-mb-2">Vax</h6>
+                                <h5>Merstappen</h5>
+                            </div>
+
+                            <h5>245PTS</h5>
+                        </footer>
+                    </div>
+
+                    <div class="order-2 lg:order-1">
+                        <figure class="relative border-l-4 border-t-4 border-[#FF8000] rounded-tl-24 bg-background">
+                            <img class="-mt-40 lg:-mt-112 h-auto" src="../assets/images/drivers/norris.png" alt="" />
+                            <p class="display absolute top-16 left-32 font-semibold text-[#FF8000]">2</p>
+                        </figure>
+
+                        <footer class="px-24 py-16 flex justify-between items-center rounded-b-24 text-neutral-10 bg-[#FF8000]">
+                            <div class="shrink-0">
+                                <h6 class="-mb-2">Nando</h6>
+                                <h5>Lorris</h5>
+                            </div>
+
+                            <h5>240PTS</h5>
+                        </footer>
+                    </div>
+
+                    <div class="order-3">
+                        <figure class="relative border-l-4 border-t-4 border-[#E80020] rounded-tl-24 bg-background">
+                            <img class="-mt-40 lg:-mt-112 h-auto" src="../assets/images/drivers/leclerc.png" alt="" />
+                            <p class="display absolute top-16 left-32 font-semibold text-[#E80020]">3</p>
+                        </figure>
+
+                        <footer class="px-24 py-16 flex justify-between items-center rounded-br-24 text-neutral-10 bg-[#E80020]">
+                            <div class="shrink-0">
+                                <h6 class="-mb-2">Larles</h6>
+                                <h5>Checlerc</h5>
+                            </div>
+
+                            <h5>235PTS</h5>
+                        </footer>
+                    </div>
+                </div>
+
+                <ul class="mt-40 rounded-16 lg:rounded-24 bg-background">
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>1</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#3671C6]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Vax</h6>
+                                <h6 class="inline-block">Merstappen</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">Blue Bull Cycling</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">245PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>2</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#FF8000]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Nando</h6>
+                                <h6 class="inline-block">Lorris</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">LcMaren</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">240PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>3</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#E80020]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Larles</h6>
+                                <h6 class="inline-block">Checlerc</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">Peugeot</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">235PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>4</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#FF8000]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Poscar</h6>
+                                <h6 class="inline-block">Oiastri</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">LcMaren</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">230PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>5</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#E80020]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Sarlo</h6>
+                                <h6 class="inline-block">Cainz</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">Peugeot</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">225PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>6</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#27F4D2]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Hewis</h6>
+                                <h6 class="inline-block">Lamilton</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">Volkswagen</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">220PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>7</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#27F4D2]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Reorge</h6>
+                                <h6 class="inline-block">Gussel</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">Volkswagen</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">215PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>8</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#3671C6]"></div>
+
+                            <div class="shrink-0">
+                                <h6 class="hidden md:inline-block">Pergio</h6>
+                                <h6 class="inline-block">Serez</h6>
+                            </div>
+
+                            <small class="truncate text-neutral-100">Blue Bull Cycling</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">210PTS</p>
+                    </li>
+                </ul>
+
+                <footer class="mt-40 text-center">
+                    <a class="button button-sm button-primary" href="/drivers">View full standings</a>
+                </footer>
+            </div>
+
+            <div id="tab-teams" class="hidden">
+                <h3 class="my-40 text-center">Team Standings</h3>
+
+                <div class="gap-16 flex flex-col lg:flex-row">
+                    <div class="order-1 lg:order-2">
+                        <div class="p-24 relative overflow-hidden border-r-4 border-t-4 border-[#FF8000] rounded-tr-24 bg-background">
+                            <figure>
+                                <img class="" src="../assets/images/teams/mclaren-logo-full.png" alt="" />
+                            </figure>
+
+                            <figure>
+                                <img src="../assets/images/teams/mclaren-car.png" alt="" />
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="order-2 lg:order-1">
+                        <div class="p-24 relative overflow-hidden border-l-4 border-t-4 border-[#3671C6] rounded-tl-24 bg-background">
+                            <figure>
+                                <img class="" src="../assets/images/teams/redbull-logo-full.png" alt="" />
+                            </figure>
+
+                            <figure>
+                                <img src="../assets/images/teams/redbull-car.png" alt="" />
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="order-3">
+                        <div class="p-24 relative overflow-hidden border-l-4 border-t-4 border-[#E80020] rounded-tl-24 bg-background">
+                            <figure>
+                                <img class="" src="../assets/images/teams/ferrari-logo-full.png" alt="" />
+                            </figure>
+
+                            <figure>
+                                <img src="../assets/images/teams/ferrari-car.png" alt="" />
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="mt-40 rounded-16 lg:rounded-24 bg-background">
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>1</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#FF8000]"></div>
+
+                            <h6 class="shrink-0">LcMaren</h6>
+
+                            <small class="truncate text-neutral-100">Lorris / Oiastri</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">550PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>2</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#3671C6]"></div>
+
+                            <h6 class="shrink-0">Blue Bull Cycling</h6>
+
+                            <small class="truncate text-neutral-100">Merstappen / Serez</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">545PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>3</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#E80020]"></div>
+
+                            <h6 class="shrink-0">Peugeot</h6>
+
+                            <small class="truncate text-neutral-100">Checlerc / Cainz</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">540PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>4</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#27f4d2]"></div>
+
+                            <h6 class="shrink-0">Volkswagen</h6>
+
+                            <small class="truncate text-neutral-100">Lamilton / Gussel</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">535PTS</p>
+                    </li>
+
+                    <li class="px-16 lg:px-24 py-10 lg:py-16 flex justify-between items-center border-b last:border-b-0 border-neutral-40">
+                        <div class="gap-8 lg:gap-16 flex items-center">
+                            <h6>5</h6>
+
+                            <div class="w-4 h-16 shrink-0 bg-[#229971]"></div>
+
+                            <h6 class="shrink-0">Suzuki</h6>
+
+                            <small class="truncate text-neutral-100">Flonso / Ltroll</small>
+                        </div>
+
+                        <p class="lg:text-subheading font-bold">530PTS</p>
+                    </li>
+                </ul>
+
+                <footer class="mt-40 text-center">
+                    <a class="button button-sm button-primary" href="/teams">View full standings</a>
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container pt-112">
+    <header class="mb-16 gap-16 flex items-center">
+        <h3 class="shrink-0">Explore F1 topics</h3>
+        <div class="w-full h-10 bg-primary-300"></div>
+    </header>
+
+    <ul class="gap-16 grid grid-cols-2 lg:grid-cols-4">
+        <li>
+            <a
+                class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
+                href="https://www.formula1.com/en/latest/tags/impact.2Xv0Ky85GUqpD8aP9sgUwq"
+                target="_blank"
+            >
+                <h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Impact</h4>
+                <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
+                <img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-1.jpg" alt="" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
+                href="https://www.formula1.com/en/latest/tags/race-calendar.2Sa4DEdBSUMcOqa8aYceEe"
+                target="_blank"
+            >
+                <h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Calendar</h4>
+                <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
+                <img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-2.jpg" alt="" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
+                href="https://www.formula1.com/en/latest/tags/podcasts.5Wy3IsJQnmweQC6igqEOio"
+                target="_blank"
+            >
+                <h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Podcasts</h4>
+                <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
+                <img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-3.jpg" alt="" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
+                href="https://www.formula1.com/en/latest/tags/esports.N0CpHwC3MAUK4iwAEYi6e"
+                target="_blank"
+            >
+                <h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Esports</h4>
+                <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
+                <img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-4.webp" alt="" />
+            </a>
+        </li>
+    </ul>
+</section>
