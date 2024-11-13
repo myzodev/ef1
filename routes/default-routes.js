@@ -1,5 +1,5 @@
-const express = require('express')
-const articles = require('../database')
+import express from 'express'
+import articles from '../database/index.js'
 
 const defaultRouter = express.Router()
 
@@ -15,4 +15,4 @@ defaultRouter.get('/teams', (req, res) => {
 	res.render('teams', { activeNav: 'teams' })
 })
 
-module.exports = defaultRouter
+export default defaultRouter

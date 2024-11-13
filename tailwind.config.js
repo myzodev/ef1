@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin')
+import plugin from 'tailwindcss/plugin'
 
 module.exports = {
 	content: ['views/**/*.ejs', 'src/**/*.js'],
@@ -166,7 +166,6 @@ module.exports = {
 
 	plugins: [
 		require('@tailwindcss/aspect-ratio'),
-		require('@tailwindcss/line-clamp'),
 		require('@tailwindcss/forms'),
 
 		plugin(function ({ addComponents, theme }) {

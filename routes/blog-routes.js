@@ -1,5 +1,5 @@
-const express = require('express')
-const articles = require('../database')
+import express from 'express'
+import articles from '../database/index.js'
 
 const blogRouter = express.Router()
 
@@ -12,4 +12,4 @@ blogRouter.get('/:id', (req, res) => {
 	res.render('blog-item', { activeNav: 'blog-item', article })
 })
 
-module.exports = blogRouter
+export default blogRouter

@@ -1,6 +1,6 @@
-import navbar from './navbar'
-import counter from './counter'
-import tabs from './tabs'
+import navbar from './navbar.js'
+import counter from './counter.js'
+import tabs from './tabs.js'
 
 addEventListener('DOMContentLoaded', () => {
 	navbar()

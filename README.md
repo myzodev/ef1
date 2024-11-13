@@ -1,6 +1,6 @@
 # EF1
 
-Fully responsive CRUD application. Created as a task for a unversity.
+Fully responsive CRUD application. Created as a task for a university.
 
 ## Tech
 
@@ -13,8 +13,10 @@ Fully responsive CRUD application. Created as a task for a unversity.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command         | Action                                    |
-| :-------------- | :---------------------------------------- |
-| `npm install`   | Installs dependencies                     |
-| `npm run dev`   | Builds all assets                         |
-| `npm run build` | Build site assets to `./dist/` |
+| Command             | Action                                                         |
+| :------------------ | :------------------------------------------------------------- |
+| `npm install`       | Installs dependencies                                          |
+| `npm run dev`       | Runs both `watch-server` and `watch-mix` in parallel           |
+| `npm run watch-server` | Starts the server with `nodemon` for automatic restarts on changes |
+| `npm run watch-mix` | Watches and compiles assets using Laravel Mix                  |
+| `npm run build`     | Builds site assets to `./dist/`                                |

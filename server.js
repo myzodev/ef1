@@ -1,9 +1,13 @@
-const express = require('express')
-const expressLayouts = require('express-ejs-layouts')
-const path = require('path')
-const defaultRouter = require('./routes/default-routes')
-const authRouter = require('./routes/auth-routes')
-const blogRouter = require('./routes/blog-routes')
+import express from 'express'
+import expressLayouts from 'express-ejs-layouts'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import defaultRouter from './routes/default-routes.js'
+import authRouter from './routes/auth-routes.js'
+import blogRouter from './routes/blog-routes.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const app = express()
 const APP_PORT = 3000
