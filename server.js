@@ -2,15 +2,18 @@ import express from 'express'
 import expressLayouts from 'express-ejs-layouts'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import dotenv from 'dotenv'
 import defaultRouter from './routes/default-routes.js'
 import authRouter from './routes/auth-routes.js'
 import blogRouter from './routes/blog-routes.js'
+
+dotenv.config()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const app = express()
-const APP_PORT = 3000
+const APP_PORT = process.env.APP_PORT || 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
