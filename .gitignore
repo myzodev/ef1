@@ -1,5 +1,6 @@
 # Folders
 assets/
+dist/*
 
 # Dependency directories
 node_modules/

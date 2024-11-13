@@ -20,6 +20,10 @@ module.exports = {
 				10: '10px',
 				16: '16px',
 			},
+
+            backgroundSize: {
+                '16': '16px',
+            }
 		},
 
 		container: {

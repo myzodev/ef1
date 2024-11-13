@@ -5,28 +5,28 @@
 </section>
 
 <section class="container gap-16 grid grid-cols-1 lg:grid-cols-2 items-start">
-	<a class="relative lg:sticky lg:top-80 rounded-16 overflow-hidden group" href="/news/1">
+	<a class="relative lg:sticky lg:top-80 rounded-16 overflow-hidden group" href="/blog/1">
 		<figure class="aspect-w-4 aspect-h-4 lg:aspect-h-3">
-			<img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-4.webp" alt="" />
+			<img class="object-cover transition-transform group-hover:scale-110" src="../images/placeholder-4.webp" alt="" />
 		</figure>
 
 		<div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20"></div>
 
 		<article class="p-24 absolute left-0 bottom-0 text-neutral-10">
-			<small class="px-5 py-2 mb-8 inline-block font-bold rounded-4 bg-primary-300">News</small>
-			<h4>Norris rues ‘shocking’ Sprint Qualifying lap in Austin as he admits ‘struggling the whole day’</h4>
+			<small class="px-5 py-2 mb-8 inline-block font-bold rounded-4 bg-primary-300"><%= newestArticle.category %></small>
+			<h4><%= newestArticle.title %></h4>
 		</article>
 	</a>
 
 	<div class="shrink-0">
 		<ul class="gap-16 grid grid-cols-2">
-			<%- include('includes/components/article.ejs') %> <%- include('includes/components/article.ejs') %> <%-
-			include('includes/components/article.ejs') %> <%- include('includes/components/article.ejs') %> <%-
-			include('includes/components/article.ejs') %> <%- include('includes/components/article.ejs') %>
+            <% articles.forEach(article => { %>
+                <%- include('includes/components/article', { article }) %> 
+            <% }) %>
 		</ul>
 
 		<footer class="mt-24 text-center lg:text-left">
-			<a class="button button-primary button-sm" href="/news">Show latest news</a>
+			<a class="button button-primary button-sm" href="/blog">Show latest news</a>
 		</footer>
 	</div>
 </section>
@@ -41,7 +41,7 @@
 					With the F1 Sprint back in action in Austin, here's a little refresher of the format in use for 2024...
 				</p>
 
-				<a class="button button-sm button-white" href="">Read more</a>
+				<a class="button button-sm button-white" href="https://www.formula1.com/en/page/what-is-f1" target="_blank">Read more</a>
 			</article>
 
 			<div
@@ -53,7 +53,7 @@
 			></div>
 
 			<figure class="w-[1174px] xl:w-[1053px] hidden lg:block absolute -right-[223px] xl:-right-[101px] bottom-0 z-10">
-				<img src="../assets/images/cta-background.png" alt="" />
+				<img src="../images/cta-background.png" alt="" />
 			</figure>
 		</div>
 	</div>
@@ -85,7 +85,7 @@
 				<div class="mt-56 lg:mt-136 gap-56 lg:gap-16 flex flex-col lg:flex-row">
 					<div class="order-1 lg:order-2">
 						<figure class="relative border-r-4 border-t-4 border-[#3671C6] rounded-tr-24 bg-background">
-							<img class="-mt-40 lg:-mt-112 h-auto" src="../assets/images/drivers/verstappen.png" alt="" />
+							<img class="-mt-40 lg:-mt-112 h-auto" src="../images/drivers/verstappen.png" alt="" />
 							<p class="display absolute top-16 left-32 font-semibold text-[#3671C6]">1</p>
 						</figure>
 
@@ -101,7 +101,7 @@
 
 					<div class="order-2 lg:order-1">
 						<figure class="relative border-l-4 border-t-4 border-[#FF8000] rounded-tl-24 bg-background">
-							<img class="-mt-40 lg:-mt-112 h-auto" src="../assets/images/drivers/norris.png" alt="" />
+							<img class="-mt-40 lg:-mt-112 h-auto" src="../images/drivers/norris.png" alt="" />
 							<p class="display absolute top-16 left-32 font-semibold text-[#FF8000]">2</p>
 						</figure>
 
@@ -117,7 +117,7 @@
 
 					<div class="order-3">
 						<figure class="relative border-l-4 border-t-4 border-[#E80020] rounded-tl-24 bg-background">
-							<img class="-mt-40 lg:-mt-112 h-auto" src="../assets/images/drivers/leclerc.png" alt="" />
+							<img class="-mt-40 lg:-mt-112 h-auto" src="../images/drivers/leclerc.png" alt="" />
 							<p class="display absolute top-16 left-32 font-semibold text-[#E80020]">3</p>
 						</figure>
 
@@ -282,11 +282,11 @@
 					<div class="order-1 lg:order-2">
 						<div class="p-24 relative overflow-hidden border-r-4 border-t-4 border-[#FF8000] rounded-tr-24 bg-background">
 							<figure>
-								<img class="" src="../assets/images/teams/mclaren-logo-full.png" alt="" />
+								<img class="" src="../images/teams/mclaren-logo-full.png" alt="" />
 							</figure>
 
 							<figure>
-								<img src="../assets/images/teams/mclaren-car.png" alt="" />
+								<img src="../images/teams/mclaren-car.png" alt="" />
 							</figure>
 						</div>
 					</div>
@@ -294,11 +294,11 @@
 					<div class="order-2 lg:order-1">
 						<div class="p-24 relative overflow-hidden border-l-4 border-t-4 border-[#3671C6] rounded-tl-24 bg-background">
 							<figure>
-								<img class="" src="../assets/images/teams/redbull-logo-full.png" alt="" />
+								<img class="" src="../images/teams/redbull-logo-full.png" alt="" />
 							</figure>
 
 							<figure>
-								<img src="../assets/images/teams/redbull-car.png" alt="" />
+								<img src="../images/teams/redbull-car.png" alt="" />
 							</figure>
 						</div>
 					</div>
@@ -306,11 +306,11 @@
 					<div class="order-3">
 						<div class="p-24 relative overflow-hidden border-l-4 border-t-4 border-[#E80020] rounded-tl-24 bg-background">
 							<figure>
-								<img class="" src="../assets/images/teams/ferrari-logo-full.png" alt="" />
+								<img class="" src="../images/teams/ferrari-logo-full.png" alt="" />
 							</figure>
 
 							<figure>
-								<img src="../assets/images/teams/ferrari-car.png" alt="" />
+								<img src="../images/teams/ferrari-car.png" alt="" />
 							</figure>
 						</div>
 					</div>
@@ -396,59 +396,4 @@
 	</div>
 </section>
 
-<section class="container pt-112">
-	<header class="mb-16 gap-16 flex items-center">
-		<h3 class="shrink-0">Explore F1 topics</h3>
-		<div class="w-full h-10 bg-primary-300"></div>
-	</header>
-
-	<ul class="gap-16 grid grid-cols-2 lg:grid-cols-4">
-		<li>
-			<a
-				class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
-				href="https://www.formula1.com/en/latest/tags/impact.2Xv0Ky85GUqpD8aP9sgUwq"
-				target="_blank"
-			>
-				<h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Impact</h4>
-				<div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
-				<img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-1.jpg" alt="" />
-			</a>
-		</li>
-
-		<li>
-			<a
-				class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
-				href="https://www.formula1.com/en/latest/tags/race-calendar.2Sa4DEdBSUMcOqa8aYceEe"
-				target="_blank"
-			>
-				<h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Calendar</h4>
-				<div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
-				<img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-2.jpg" alt="" />
-			</a>
-		</li>
-
-		<li>
-			<a
-				class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
-				href="https://www.formula1.com/en/latest/tags/podcasts.5Wy3IsJQnmweQC6igqEOio"
-				target="_blank"
-			>
-				<h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Podcasts</h4>
-				<div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
-				<img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-3.jpg" alt="" />
-			</a>
-		</li>
-
-		<li>
-			<a
-				class="h-200 rounded-16 relative overflow-hidden text-neutral-10 group"
-				href="https://www.formula1.com/en/latest/tags/esports.N0CpHwC3MAUK4iwAEYi6e"
-				target="_blank"
-			>
-				<h4 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">Esports</h4>
-				<div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-neutral-900/20 z-10"></div>
-				<img class="object-cover transition-transform group-hover:scale-110" src="../assets/images/placeholder-4.webp" alt="" />
-			</a>
-		</li>
-	</ul>
-</section>
+<%- include('./includes/blocks/section-explore') %>

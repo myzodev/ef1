@@ -1,10 +1,10 @@
 const mix = require('laravel-mix')
 
-mix.setPublicPath('public/assets')
+mix.setPublicPath('dist')
 	.js('./src/js/app.js', 'js')
 	.postCss('./src/css/app.css', 'css', [require('tailwindcss')])
 
-mix.copy('src/images', 'public/assets/images').copy('src/fonts', 'public/assets/fonts')
+mix.copy('src/images', 'dist/images').copy('src/fonts', 'dist/fonts')
 
 mix.options({
 	processCssUrls: false,

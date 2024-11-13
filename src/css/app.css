@@ -167,7 +167,7 @@
 	}
 
 	.flag-pattern {
-		@apply my-16 h-120 rounded-16 bg-[url('../images/flag-pattern.svg')];
+		@apply my-16 h-120 rounded-16 bg-[url('../images/flag-pattern.avif')] bg-16;
 	}
 
 	.link-overlay:before {

@@ -1,0 +1,21 @@
+<%- include('./includes/components/counter') %>
+
+<section class="container">
+    <div class="flag-pattern"></div>
+</section>
+
+<section class="container">
+    <h2 class="lg:h1 pr-16 inline-block relative z-10 bg-background">Blog</h2>
+
+    <div
+        class="pt-[28px] lg:pt-40 pr-0 lg:pr-40 -mt-[28px] lg:-mt-40 border-t-10 border-r-0 lg:border-r-10 rounded-tr-0 lg:rounded-tr-40 border-primary-300"
+    >
+        <ul class="gap-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <% articles.forEach(article=> { %>
+                <%- include('includes/components/article', { article }) %>
+            <% }) %>
+        </ul>
+    </div>
+</section>
+
+<%- include('./includes/blocks/section-explore') %>
