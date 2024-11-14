@@ -5,11 +5,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "npm-run-all --parallel watch-server watch-mix",
-        "watch-server": "nodemon server.js",
-        "watch-mix": "mix watch",
-        "build": "mix --production"
+		"watch-server": "nodemon server.js",
+		"watch-mix": "mix watch",
+        "db-seed": "node database/seed.js",
+		"build": "mix --production"
 	},
-	"license": "ISC",
 	"devDependencies": {
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/forms": "^0.5.9",
@@ -24,7 +24,8 @@
 		"ejs": "^3.1.10",
 		"express": "^4.21.1",
 		"express-ejs-layouts": "^2.5.1",
+		"mysql2": "^3.11.4",
 		"node": "^23.1.0",
-		"uuid": "^11.0.2"
+		"uuid": "^11.0.3"
 	}
 }

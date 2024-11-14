@@ -1,9 +1,10 @@
 import express from 'express'
-import articles from '../database/index.js'
+import { getArticlesAmount } from '../controllers/blog-controller.js'
 
 const defaultRouter = express.Router()
 
-defaultRouter.get('/', (req, res) => {
+defaultRouter.get('/', async (req, res) => {
+    const articles = await getArticlesAmount(7)
 	res.render('index', { activeNav: 'home', newestArticle: articles[0], articles: articles.slice(1, 7) })
 })
 

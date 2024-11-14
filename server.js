@@ -22,7 +22,7 @@ app.use(expressLayouts)
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
-app.set('layout', './layouts/default')
+app.set('layout', path.join(__dirname, 'views/layouts/default'))
 
 app.use('/', defaultRouter)
 app.use('/auth', authRouter)
