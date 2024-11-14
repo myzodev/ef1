@@ -8,6 +8,7 @@ Fully responsive CRUD application. Created as a task for a university.
 - **Node.js**
 - **JavaScript**
 - **TailwindCSS**
+- **MySQL**
 
 ## Commands
 

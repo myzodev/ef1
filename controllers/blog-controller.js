@@ -1,22 +1,28 @@
-import db from '../database/db.js'
+import { getAllArticles, getArticleByID, getArticlesAmount } from '../models/blog-model.js'
 
-const getArticles = async () => {
-    const [articles] = await db.query('SELECT * FROM articles')
-    return articles
+export const fetchArticles = async () => {
+	try {
+		const articles = await getAllArticles()
+		return articles
+	} catch (error) {
+		console.error(error.message)
+	}
 }
 
-const getArticleByID = async (id) => {
-    const [article] = await db.query('SELECT * FROM articles WHERE id = ?', [id])
-    return article[0]
+export const fetchArticleByID = async (id) => {
+	try {
+		const article = await getArticleByID(id)
+		return article
+	} catch (error) {
+		console.error(error.message)
+	}
 }
 
-const getArticlesAmount = async (amount) => {
-    const [article] = await db.query('SELECT * FROM articles LIMIT ?', [amount])
-    return article
-}
-
-export { 
-    getArticles,
-    getArticleByID,
-    getArticlesAmount
+export const fetchArticlesAmount = async (amount) => {
+	try {
+		const articles = await getArticlesAmount(amount)
+		return articles
+	} catch (error) {
+		console.error(error.message)
+	}
 }

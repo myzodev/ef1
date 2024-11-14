@@ -1,8 +1,8 @@
-import db from "../db.js"
+import db from '../db.js'
 
 const seedArticles = async () => {
-    try {
-        await db.query(`
+	try {
+		await db.query(`
             INSERT INTO articles (id, title, text, category, image) VALUES
             (1, 'The Evolution of F1 Cars', 'From the early days of Formula 1 to the modern era, F1 cars have undergone significant changes in design, technology, and performance. This article explores the key milestones in the evolution of F1 cars.', 'Technology', '/images/placeholder-1.webp'),
             (2, 'Top 10 F1 Drivers of All Time', 'Formula 1 has seen many legendary drivers over the years. This article ranks the top 10 F1 drivers of all time based on their achievements, skills, and impact on the sport.', 'History', '/images/placeholder-2.webp'),
@@ -26,12 +26,12 @@ const seedArticles = async () => {
             (20, 'The Impact of F1 on Global Motorsport', 'Formula 1 has had a significant impact on global motorsport. This article discusses how F1 has influenced other racing series and the motorsport industry as a whole.', 'Business', '/images/placeholder-4.webp');
         `)
 
-        console.log('Articles seeded successfully')
-    } catch (error) {
-        console.error('Error seeding articles:', error)
-    } finally {
-        db.end()
-    }
+		console.log('Articles seeded successfully')
+	} catch (error) {
+		console.error('Error seeding articles:', error)
+	} finally {
+		db.end()
+	}
 }
 
 export default seedArticles

@@ -1,3 +1,3 @@
-import seedArticles from "./seeders/article-seed.js"
+import seedArticles from './seeders/article-seed.js'
 
 seedArticles()
