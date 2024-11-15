@@ -1,5 +1,5 @@
 <nav class="w-full fixed top-0 left-0 z-100 text-neutral-10 bg-primary-300">
-	<div class="container py-8 xl:py-16 mx-auto flex justify-between items-center">
+	<div class="container py-8 xl:py-0 mx-auto flex justify-between items-center">
 		<a href="/">
 			<img class="w-80 xl:w-112" src="/images/logo.svg" alt="EF1 Logo" />
 		</a>
@@ -23,14 +23,30 @@
 					<a class="navbar-menu-link <%= activeNav == 'teams' ? 'active' : '' %>" href="/teams">Teams</a>
 				</li>
 
-				<li class="hidden xl:block">
-					<a class="button button-xs button-white" href="/auth/login">Login</a>
-				</li>
+                <% if (!locals.user) { %>
+                    <li class="hidden xl:block">
+                        <a class="button button-xs button-white" href="/auth/login">Login</a>
+                    </li>
+                <% } else { %>
+                    <li class="hidden xl:block">
+                        <form action="/auth/logout" method="POST">
+                            <button class="navbar-menu-link" type="submit"><%= locals.user.name %></button>
+                        </form>
+                    </li>
+                <% } %>
 			</ul>
 
-			<aside class="block xl:hidden">
-				<a class="button button-primary button-base w-full" href="/auth/login">Login</a>
-			</aside>
+            <% if (!locals.user) { %>
+                <aside class="block xl:hidden">
+                    <a class="button button-primary button-base w-full" href="/auth/login">Login</a>
+                </aside>
+            <% } else { %>
+                <aside class="block xl:hidden">
+                    <form action="/auth/logout" method="POST">
+                        <button class="navbar-menu-link" type="submit"><%= locals.user.name %></button>
+                    </form>
+                </aside>
+            <% } %>
 		</div>
 	</div>
 </nav>

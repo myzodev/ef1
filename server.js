@@ -1,4 +1,6 @@
 import express from 'express'
+import session from 'express-session'
+import MySQLStore from 'express-mysql-session'
 import expressLayouts from 'express-ejs-layouts'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -14,6 +16,37 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 const APP_PORT = process.env.APP_PORT || 3000
+
+const MySQLStoreFunction = MySQLStore(session);
+
+const sessionOptions = {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+}
+
+const sessionStore = new MySQLStoreFunction(sessionOptions)
+
+app.use(
+    session({
+        secret: process.env.APP_SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: sessionStore,
+    })
+)
+
+app.use((req, res, next) => {
+    const user = req.session.user
+    res.locals.user = user
+
+    const message = req.session.message
+    res.locals.message = message
+    
+    next()
+});
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

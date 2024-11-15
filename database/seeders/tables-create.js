@@ -10,12 +10,13 @@ const connection = await mysql.createConnection({
 	password: process.env.DB_PASSWORD,
 });
 
-const seedDatabase = async () => {
+const createTables = async () => {
     try {
         await connection.query('CREATE DATABASE IF NOT EXISTS ef1;')
         
         await connection.query('USE ef1;')
         
+        // Create articles table
         await connection.query(`
             CREATE TABLE IF NOT EXISTS articles (
                 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -27,12 +28,22 @@ const seedDatabase = async () => {
             );
         `)
         
-        console.log('Database seeded successfully')
+        // Create users table
+        await connection.query(`
+            CREATE TABLE IF NOT EXISTS users (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                name VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                password VARCHAR(255) NOT NULL
+            );
+        `)
+        
+        console.log('Tables created successfully')
     } catch (error) {
-        console.error('Error seeding database:', error)
+        console.error('Error creating tables:', error)
     } finally {
         connection.end()
     }
 }
 
-export default seedDatabase
+export default createTables

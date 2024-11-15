@@ -16,9 +16,9 @@
 				<h2>Login</h2>
 			</article>
 
-			<form class="gap-8 w-full flex flex-col" action="">
-				<input type="email" placeholder="Email" name="email" required />
-				<input type="password" placeholder="Password" name="password" required />
+			<form class="gap-8 w-full flex flex-col" action="/auth/login" method="POST">
+				<input type="email" placeholder="Email" name="email" />
+				<input type="password" placeholder="Password" name="password" />
 				<button class="button button-base button-primary w-full" type="submit">Login</button>
 			</form>
 		</div>

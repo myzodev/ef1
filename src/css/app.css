@@ -135,11 +135,11 @@
 	}
 
 	.navbar-menu-link {
-		@apply block relative text-[2.44rem] sm:text-[3.22rem] xl:text-[0.88rem] font-semibold leading-none text-neutral-10 transition-opacity hover:opacity-80;
+		@apply xl:py-[26px] block relative text-[2.44rem] sm:text-[3.22rem] xl:text-[0.88rem] font-semibold leading-none text-neutral-10 transition-opacity hover:opacity-80;
 	}
 
 	.navbar-menu-link.active::before {
-		@apply content-[''] size-24 xl:size-4 absolute top-1/2 xl:top-unset -left-[45px] xl:left-1/2 xl:-bottom-10 -translate-y-1/2 xl:translate-y-0 xl:-translate-x-1/2 rounded-full bg-primary-300 xl:bg-neutral-10;
+		@apply content-[''] size-24 xl:size-4 absolute top-1/2 xl:top-unset -left-[45px] xl:left-1/2 xl:bottom-16 -translate-y-1/2 xl:translate-y-0 xl:-translate-x-1/2 rounded-full bg-primary-300 xl:bg-neutral-10;
 	}
 
 	.navbar-mobile-menu-button {
