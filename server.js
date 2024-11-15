@@ -28,6 +28,10 @@ app.use('/', defaultRouter)
 app.use('/auth', authRouter)
 app.use('/blog', blogRouter)
 
+app.use((req, res) => {
+    res.status(404).render("errors/404", { activeNav: '404' });
+});
+
 app.listen(APP_PORT, () => {
 	console.log(`App listening on http://localhost:${APP_PORT}`)
 })

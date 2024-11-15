@@ -8,9 +8,14 @@ blogRouter.get('/', async (req, res) => {
 	res.render('blog', { activeNav: 'blog', articles })
 })
 
-blogRouter.get('/:slug', async (req, res) => {
+blogRouter.get('/:slug', async (req, res, next) => {
 	const { slug } = req.params
 	const article = await Articles.fetchArticleBySlug(slug)
+
+    if (!article) {
+        return next()
+    }
+
 	res.render('blog-item', { activeNav: 'blog-item', article })
 })
 

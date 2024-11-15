@@ -5,10 +5,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "npm-run-all --parallel watch:server watch:mix",
+		"build": "mix --production",
+        "start": "node server.js",
 		"watch:server": "nodemon server.js",
 		"watch:mix": "mix watch",
-        "db:seed": "node database/seed.js",
-		"build": "mix --production"
+        "db:seed": "node database/seed.js"
 	},
 	"devDependencies": {
 		"@tailwindcss/aspect-ratio": "^0.4.2",
