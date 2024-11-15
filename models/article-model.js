@@ -21,6 +21,7 @@ class Article {
         const [articles] = await db.query(query)
 
         if (articles.length == 1) return articles[0]
+        if (articles.length == 0) return []
 
         return artciles
 	}
