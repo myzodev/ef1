@@ -15,6 +15,21 @@ class Article {
 		const [article] = await db.query('SELECT * FROM articles WHERE slug = ?', [slug])
 		return article[0]
 	}
+
+	static create = async (article) => {
+		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [
+			article.userID,
+			article.title,
+			article.slug,
+			article.text,
+			article.category,
+			article.image,
+		])
+	}
+
+	static deleteByID = async (id) => {
+		await db.query('DELETE FROM articles WHERE id = ?', [id])
+	}
 }
 
 export default Article

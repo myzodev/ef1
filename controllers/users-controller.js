@@ -4,31 +4,31 @@ import { checkRequiredFields, generateResponse } from '../utils/auth.js'
 class Users {
 	static register = async (user) => {
 		try {
-            const areCredentialsValid = checkRequiredFields(user, ['name', 'email', 'password', 'repeatPassword'])
+			const areCredentialsValid = checkRequiredFields(user, ['name', 'email', 'password', 'repeatPassword'])
 
-            if (user.password !== user.repeatPassword) {
-                return generateResponse(true, 'Passwords do not match.', {})
-            }
+			if (user.password !== user.repeatPassword) {
+				return generateResponse(true, 'Passwords do not match.', {})
+			}
 
-            if (!areCredentialsValid) {
-                return generateResponse(true, 'Please provide all fields.', {})
-            }
+			if (!areCredentialsValid) {
+				return generateResponse(true, 'Please provide all fields.', {})
+			}
 
-            const foundUser = await User.getByEmail(user.email)
+			const foundUser = await User.getByEmail(user.email)
 
-            if (foundUser) {
-                return generateResponse(true, 'User already exists', {})
-            }
+			if (foundUser) {
+				return generateResponse(true, 'User already exists', {})
+			}
 
-            const newUserPassword = await User.hashPassword(user.password)
+			const newUserPassword = await User.hashPassword(user.password)
 
-            const newUserCredentials = {
-                name: user.name,
-                email: user.email,
-                password: newUserPassword
-            }
+			const newUserCredentials = {
+				name: user.name,
+				email: user.email,
+				password: newUserPassword,
+			}
 
-            const newUser = await User.create(newUserCredentials)
+			const newUser = await User.create(newUserCredentials)
 
 			return generateResponse(false, 'User created', newUser)
 		} catch (error) {
@@ -36,27 +36,27 @@ class Users {
 		}
 	}
 
-    static login = async (user) => {
+	static login = async (user) => {
 		try {
-            const areCredentialsValid = checkRequiredFields(user, ['email', 'password'])
+			const areCredentialsValid = checkRequiredFields(user, ['email', 'password'])
 
-            if (!areCredentialsValid) {
-                return generateResponse(true, 'Please provide all fields.', {})
-            }
+			if (!areCredentialsValid) {
+				return generateResponse(true, 'Please provide all fields.', {})
+			}
 
-            const foundUser = await User.getByEmail(user.email)
+			const foundUser = await User.getByEmail(user.email)
 
-            if (!foundUser) {
-                return generateResponse(true, 'User does not exist', {})
-            }
+			if (!foundUser) {
+				return generateResponse(true, 'User does not exist', {})
+			}
 
-            const isPasswordvalid = await User.comparePasswords(user.password, foundUser.password)
+			const isPasswordvalid = await User.comparePasswords(user.password, foundUser.password)
 
-            if (!isPasswordvalid) {
-                return generateResponse(true, 'Invalid credentials', {})
-            }
+			if (!isPasswordvalid) {
+				return generateResponse(true, 'Invalid credentials', {})
+			}
 
-            return generateResponse(false, 'User logged in', foundUser)
+			return generateResponse(false, 'User logged in', foundUser)
 		} catch (error) {
 			console.error(error.message)
 		}

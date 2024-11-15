@@ -5,7 +5,13 @@
 </section>
 
 <section class="container">
-    <h2 class="lg:h1 pr-16 inline-block relative z-10 bg-background">Blog</h2>
+    <header class="gap-16 pr-16 inline-flex items-center relative z-10 bg-background">
+        <h2 class="lg:h1">What's new?</h2>
+
+        <% if (locals.user) { %>
+            <a class="button button-sm button-primary" href="/blog/create">Write an article</a>
+        <% } %>
+    </header>
 
     <div
         class="pt-[28px] lg:pt-40 pr-0 lg:pr-40 -mt-[28px] lg:-mt-40 border-t-10 border-r-0 lg:border-r-10 rounded-tr-0 lg:rounded-tr-40 border-primary-300"
