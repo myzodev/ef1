@@ -31,7 +31,7 @@ const createTables = async () => {
 		await connection.query(`
             CREATE TABLE IF NOT EXISTS articles (
                 id INT PRIMARY KEY AUTO_INCREMENT,
-                user_id INT,
+                user_id INT NOT NULL,
                 title VARCHAR(255) NOT NULL,
                 slug VARCHAR(255) NOT NULL,
                 text TEXT NOT NULL,

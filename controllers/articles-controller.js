@@ -38,15 +38,7 @@ class Articles {
 		}
 	}
 
-    static deleteArticleByID = async (id) => {
-		try {
-			await Article.findByIdAndDelete(id)
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
-
-	static createNewArticle = async (article) => {
+    static createNewArticle = async (article) => {
 		try {
 			const areFieldsValid = checkRequiredFields(article, ['title', 'text', 'category', 'image'])
 
@@ -55,6 +47,28 @@ class Articles {
 			}
 
 			await Article.create(article)
+		} catch (error) {
+			console.error(error.message)
+		}
+	}
+
+    static updateArticle = async (article) => {
+		try {
+			const areFieldsValid = checkRequiredFields(article, ['title', 'text', 'category', 'image'])
+
+			if (!areFieldsValid) {
+				return generateResponse(true, 'Please provide all fields.', {})
+			}
+
+			await Article.update(article)
+		} catch (error) {
+			console.error(error.message)
+		}
+	}
+
+    static deleteArticleByID = async (id) => {
+		try {
+			await Article.findByIdAndDelete(id)
 		} catch (error) {
 			console.error(error.message)
 		}

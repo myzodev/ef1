@@ -1,18 +1,31 @@
 import Article from "../models/article-model.js"
 
+export const doesHavePermissionToEdit = async (req, res, next) => {
+    const { id } = req.params
+    const currentUser = req.session.user
+
+    const article = await Article.find({ id })
+
+    if (article.user_id === currentUser.id) {
+        return next()
+    }
+
+    return res.redirect('/blog')
+}
+
 export const doesHavePermissionToDelete = async (req, res, next) => {
     const { id } = req.params
-    const isUserLoggedIn = req.session.user
+    const currentUser = req.session.user
 
-    if (isUserLoggedIn.is_admin) {
+    if (currentUser.is_admin) {
         return next()
     }
 
     const article = await Article.find({ id })
 
-    if (article.user_id === isUserLoggedIn.id) {
+    if (article.user_id === currentUser.id) {
         return next()
     }
 
-    return
+    return res.redirect('/blog')
 }

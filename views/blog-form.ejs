@@ -1,0 +1,21 @@
+<%- include('./includes/components/counter') %>
+
+<section class="container">
+    <div class="flag-pattern"></div>
+</section>
+
+<section class="container">
+    <header class="mb-40 gap-16 flex items-center">
+        <h2 class="lg:h1 shrink-0"><%= article ? 'Edit article' : 'Create new article' %></h2>
+        <div class="w-full h-10 bg-primary-300"></div>
+    </header>
+
+    <form class="gap-8 flex flex-col" action="<%= article ? `/blog/${article.id}/update` : '/blog/create' %>" method="POST">
+        <input type="hidden" name="id" value="<%= article ? article.id : '' %>" hidden>
+        <input type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
+        <input type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />
+        <input type="text" placeholder="Image URL" name="image" value="<%= article ? article.image : '' %>" />
+        <textarea placeholder="Text" name="text" rows="8"><%= article ? article.text : '' %></textarea>
+        <button class="button button-base button-primary" type="submit"><%= article ? 'Save' : 'Create' %></button>
+    </form>
+</section>

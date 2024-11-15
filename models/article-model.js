@@ -34,12 +34,25 @@ class Article {
         article.slug = slugify(article.title)
         
 		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [
-            article.user_id,
+            article.userID,
             article.title,
             article.slug,
             article.text,
             article.category,
             article.image
+        ])
+	}
+
+    static update = async (article) => {
+        article.slug = slugify(article.title)
+        
+		await db.query('UPDATE articles SET title = ?, slug = ?, text = ?, category = ?, image = ? WHERE id = ?', [
+            article.title, 
+            article.slug, 
+            article.text, 
+            article.category, 
+            article.image, 
+            article.id
         ])
 	}
 }

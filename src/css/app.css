@@ -126,9 +126,13 @@
 		@apply text-neutral-900 bg-neutral-10 hover:bg-neutral-30;
 	}
 
-    .button-error {
-        @apply text-neutral-10 bg-[#e53838] hover:bg-[#f54c4c];
-    }
+	.button-dark {
+		@apply text-neutral-10 bg-neutral-900 hover:bg-neutral-700;
+	}
+
+	.button-error {
+		@apply text-neutral-10 bg-[#e53838] hover:bg-[#f54c4c];
+	}
 
 	.navbar-menu {
 		@apply p-32 pt-88 xl:p-0 w-full xl:w-auto h-[100dvh] flex flex-col justify-between xl:h-auto fixed xl:static top-0 -right-full overflow-hidden bg-neutral-900 xl:bg-transparent transition-transform duration-500;
@@ -187,12 +191,12 @@
 	}
 
 	input,
-    textarea {
+	textarea {
 		@apply !rounded-6 !border-neutral-100;
 	}
 
 	input:focus,
-    textarea:focus {
+	textarea:focus {
 		@apply !ring-0 !outline-none !border-primary-300;
 	}
 }
