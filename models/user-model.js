@@ -1,10 +1,30 @@
 import bcrypt from 'bcrypt'
 import db from '../database/db.js'
+import { generateKeysValues } from '../utils/model.js'
 
 class User {
-	static getByEmail = async (email) => {
-		const [user] = await db.query('SELECT * FROM users WHERE email = ?', [email])
-		return user[0]
+	static find = async (data = {}, amount) => {
+        let query = 'SELECT * FROM users'
+
+        if (!data || Object.keys(data).length === 0) {
+            const [articles] = await db.query(query)
+            return articles
+        } else {
+            query = 'SELECT * FROM users WHERE '
+        }
+
+        const { keys, values } = generateKeysValues(data)
+
+        query += keys.map((key, index) => `${key} = '${values[index]}'`).join(' AND ')
+
+        if (amount) query += ` LIMIT ${amount}`
+
+        const [users] = await db.query(query)
+
+        if (users.length == 1) return users[0]
+        if (users.length == 0) return null
+
+        return users
 	}
 
 	static create = async (user) => {

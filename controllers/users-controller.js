@@ -14,7 +14,7 @@ class Users {
 				return generateResponse(true, 'Please provide all fields.', {})
 			}
 
-			const foundUser = await User.getByEmail(user.email)
+			const foundUser = await User.find({ email: user.email })
 
 			if (foundUser) {
 				return generateResponse(true, 'User already exists', {})
@@ -23,8 +23,7 @@ class Users {
 			const newUserPassword = await User.hashPassword(user.password)
 
 			const newUserCredentials = {
-				name: user.name,
-				email: user.email,
+				...user,
 				password: newUserPassword,
 			}
 
@@ -44,7 +43,7 @@ class Users {
 				return generateResponse(true, 'Please provide all fields.', {})
 			}
 
-			const foundUser = await User.getByEmail(user.email)
+			const foundUser = await User.find({ email: user.email })
 
 			if (!foundUser) {
 				return generateResponse(true, 'User does not exist', {})

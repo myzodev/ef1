@@ -1,6 +1,7 @@
 import express from 'express'
 import Articles from '../controllers/articles-controller.js'
-import { redirectAuthUser, checkAuthUser } from '../middlewares/auth-middleware.js'
+import { redirectIfAuthenticated } from '../middlewares/user-middleware.js'
+import { doesHavePermissionToDelete } from '../middlewares/article-middleware.js'
 
 const blogRouter = express.Router()
 
@@ -21,11 +22,11 @@ blogRouter.get('/:slug', async (req, res, next) => {
 /**
  * Create routes
  */
-blogRouter.get('/create', redirectAuthUser, async (req, res) => {
+blogRouter.get('/create', redirectIfAuthenticated, async (req, res) => {
 	res.render('blog-create', { activeNav: 'blog-item' })
 })
 
-blogRouter.post('/create', checkAuthUser, async (req, res) => {
+blogRouter.post('/create', redirectIfAuthenticated, async (req, res) => {
 	const { title, text, category, image } = req.body
 
 	const userID = req.session.user.id
@@ -38,7 +39,7 @@ blogRouter.post('/create', checkAuthUser, async (req, res) => {
 /**
  * Delete route
  */
-blogRouter.post('/delete/:id', checkAuthUser, async (req, res) => {
+blogRouter.post('/delete/:id', doesHavePermissionToDelete, async (req, res) => {
 	const { id } = req.params
 
 	await Articles.deleteArticleByID(id)

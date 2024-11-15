@@ -9,6 +9,12 @@
         </header>
 
 		<main>
+            <% if (locals.message) { %>
+                <div class="px-16 py-8 fixed top-56 left-1/2 -translate-x-1/2 z-100 rounded-8 font-semibold text-neutral-10 bg-[#f54c4c]">
+                    <%= locals.message %>
+                </div>
+            <% } %>
+
             <%- body %>
         </main>
 

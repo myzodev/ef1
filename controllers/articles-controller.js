@@ -4,9 +4,7 @@ import { checkRequiredFields, generateResponse, slugify } from '../utils/auth.js
 class Articles {
 	static fetchArticles = async () => {
 		try {
-			const articles = await Article.getAll()
-
-            console.log(articles)
+			const articles = await Article.find()
 
 			if (!articles.length) return []
 
@@ -18,7 +16,7 @@ class Articles {
 
 	static fetchArticlesAmount = async (amount) => {
 		try {
-			const articles = await Article.getAmount(amount)
+			const articles = await Article.find({}, amount)
 
 			if (!articles.length) return []
 
@@ -30,11 +28,19 @@ class Articles {
 
 	static fetchArticleBySlug = async (slug) => {
 		try {
-			const article = await Article.getBySlug(slug)
+			const article = await Article.find({ slug })
 
 			if (!article) return null
 
 			return article
+		} catch (error) {
+			console.error(error.message)
+		}
+	}
+
+    static deleteArticleByID = async (id) => {
+		try {
+			await Article.findByIdAndDelete(id)
 		} catch (error) {
 			console.error(error.message)
 		}
@@ -49,23 +55,11 @@ class Articles {
 			}
 
 			const newArticle = {
-				userID: article.userID,
-				title: article.title,
+				...article,
 				slug: slugify(article.title),
-				text: article.text,
-				category: article.category,
-				image: article.image,
 			}
 
 			await Article.create(newArticle)
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
-
-	static deleteArticleByID = async (id) => {
-		try {
-			await Article.deleteByID(id)
 		} catch (error) {
 			console.error(error.message)
 		}

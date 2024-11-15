@@ -4,7 +4,7 @@
 	<header class="mb-16 flex justify-between items-center">
 		<p><%= article.user_id %></p>
         
-		<% if (article.user_id == locals.user.id) { %>
+		<% if (locals.user && (article.user_id == locals.user.id || locals.user.is_admin)) { %>
             <form action="/blog/delete/<%= article.id %>" method="POST">
                 <button class="button button-xs button-error" type="submit">Delete</button>
             </form>
