@@ -1,16 +1,16 @@
 import express from 'express'
-import { fetchArticles, fetchArticleByID } from '../controllers/blog-controller.js'
+import Articles from '../controllers/articles-controller.js'
 
 const blogRouter = express.Router()
 
 blogRouter.get('/', async (req, res) => {
-	const articles = await fetchArticles()
+	const articles = await Articles.fetchArticles()
 	res.render('blog', { activeNav: 'blog', articles })
 })
 
-blogRouter.get('/:id', async (req, res) => {
-	const { id } = req.params
-	const article = await fetchArticleByID(id)
+blogRouter.get('/:slug', async (req, res) => {
+	const { slug } = req.params
+	const article = await Articles.fetchArticleBySlug(slug)
 	res.render('blog-item', { activeNav: 'blog-item', article })
 })
 

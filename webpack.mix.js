@@ -1,11 +1,11 @@
 import mix from 'laravel-mix'
 import tailwindcss from 'tailwindcss'
 
-mix.setPublicPath('dist')
+mix.setPublicPath('public')
     .js('./src/js/app.js', 'js')
     .postCss('./src/css/app.css', 'css', [tailwindcss])
 
-mix.copy('src/images', 'dist/images').copy('src/fonts', 'dist/fonts')
+mix.copy('src/images', 'public/images').copy('src/fonts', 'public/fonts')
 
 mix.options({
     processCssUrls: false,

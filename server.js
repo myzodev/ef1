@@ -17,7 +17,7 @@ const APP_PORT = process.env.APP_PORT || 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static('dist'))
+app.use(express.static('public'))
 app.use(expressLayouts)
 
 app.set('view engine', 'ejs')

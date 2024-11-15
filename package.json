@@ -4,10 +4,10 @@
 	"main": "server.js",
 	"type": "module",
 	"scripts": {
-		"dev": "npm-run-all --parallel watch-server watch-mix",
-		"watch-server": "nodemon server.js",
-		"watch-mix": "mix watch",
-        "db-seed": "node database/seed.js",
+		"dev": "npm-run-all --parallel watch:server watch:mix",
+		"watch:server": "nodemon server.js",
+		"watch:mix": "mix watch",
+        "db:seed": "node database/seed.js",
 		"build": "mix --production"
 	},
 	"devDependencies": {
