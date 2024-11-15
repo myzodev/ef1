@@ -3,6 +3,9 @@ import Users from '../controllers/users-controller.js'
 
 const authRouter = express.Router()
 
+/**
+ * Register routes
+ */
 authRouter.get('/register', (req, res) => {
     req.session.message = ''
 	res.render('register', { layout: 'layouts/auth' })
@@ -10,7 +13,7 @@ authRouter.get('/register', (req, res) => {
 
 authRouter.post('/register', async (req, res) => {
     const { name, email, password, repeatPassword } = req.body
-    const { error, message, data } = await Users.register({ name, email, password, repeatPassword })
+    const { error, message, data: user } = await Users.register({ name, email, password, repeatPassword })
 
     if (error) {
         req.session.message = message
@@ -18,10 +21,15 @@ authRouter.post('/register', async (req, res) => {
         return
     }
 
-    req.session.user = data
+    delete user.password
+
+    req.session.user = user
     res.redirect('/')
 })
 
+/**
+ * Login routes
+ */
 authRouter.get('/login', (req, res) => {
     req.session.message = ''
 	res.render('login', { layout: 'layouts/auth' })
@@ -29,7 +37,7 @@ authRouter.get('/login', (req, res) => {
 
 authRouter.post('/login', async (req, res) => {
     const { email, password } = req.body
-    const { error, message, data } = await Users.login({ email, password })
+    const { error, message, data: user } = await Users.login({ email, password })
 
     if (error) {
         req.session.message = message
@@ -37,10 +45,15 @@ authRouter.post('/login', async (req, res) => {
         return
     }
 
-    req.session.user = data
+    delete user.password
+
+    req.session.user = user
     res.redirect('/')
 })
 
+/**
+ * Logout route
+ */
 authRouter.post('/logout', (req, res) => {
     req.session.user = null
     res.redirect('/')

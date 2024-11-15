@@ -17,6 +17,9 @@ const __dirname = path.dirname(__filename)
 const app = express()
 const APP_PORT = process.env.APP_PORT || 3000
 
+/**
+ * Session store configuration
+ */
 const MySQLStoreFunction = MySQLStore(session);
 
 const sessionOptions = {
@@ -38,6 +41,9 @@ app.use(
     })
 )
 
+/**
+ * Middleware to pass data to all views
+ */
 app.use((req, res, next) => {
     const user = req.session.user
     res.locals.user = user
@@ -57,6 +63,9 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.set('layout', path.join(__dirname, 'views/layouts/default'))
 
+/**
+ * Routes
+ */
 app.use('/', defaultRouter)
 app.use('/auth', authRouter)
 app.use('/blog', blogRouter)
