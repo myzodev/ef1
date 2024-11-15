@@ -1,17 +1,19 @@
 import User from '../../models/user-model.js'
+import Article from '../../models/article-model.js'
 import db from '../db.js'
 
 const seedArticles = async () => {
 	try {
-		// Insert a user to ensure there is a valid user_id
-		const password = await User.hashPassword('123')
-		const [userResult] = await db.query(
-			`INSERT INTO users (name, email, password, is_admin) VALUES('admin', 'admin@admin.com', '${password}', 1)`
-		)
+		let admin = await User.find({ name: 'admin', email: 'admin@admin.com', is_admin: 1 });
 
-		const userId = userResult.insertId
+        if (!admin) {
+            const password = await User.hashPassword('123');
+            admin = await User.create({ name: 'admin', email: 'admin@admin.com', password, is_admin: 1 });
+        }
 
-		const [articles] = await db.query('SELECT * FROM articles')
+		const userId = admin.id;
+
+        const articles = await Article.find();
 
 		if (!articles.length) {
 			await db.query(`

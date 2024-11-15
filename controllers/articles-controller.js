@@ -1,5 +1,5 @@
 import Article from '../models/article-model.js'
-import { checkRequiredFields, generateResponse, slugify } from '../utils/auth.js'
+import { checkRequiredFields, generateResponse } from '../utils/auth.js'
 
 class Articles {
 	static fetchArticles = async () => {
@@ -54,12 +54,7 @@ class Articles {
 				return generateResponse(true, 'Please provide all fields.', {})
 			}
 
-			const newArticle = {
-				...article,
-				slug: slugify(article.title),
-			}
-
-			await Article.create(newArticle)
+			await Article.create(article)
 		} catch (error) {
 			console.error(error.message)
 		}

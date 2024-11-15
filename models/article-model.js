@@ -1,5 +1,5 @@
 import db from '../database/db.js'
-import { generateKeysValues } from '../utils/model.js'
+import { generateKeysValues, slugify } from '../utils/model.js'
 
 class Article {
     static find = async (data = {}, amount) => {
@@ -31,14 +31,8 @@ class Article {
 	}
 
 	static create = async (article) => {
-		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [
-			article.userID,
-			article.title,
-			article.slug,
-			article.text,
-			article.category,
-			article.image,
-		])
+        article.slug = slugify(article.title)
+		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [...Object.values(article)])
 	}
 }
 
