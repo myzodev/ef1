@@ -30,7 +30,13 @@ class User {
 	static create = async (user) => {
         user.is_admin = user.is_admin ? 1 : 0
 
-		const [result] = await db.query('INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, ?)', [...Object.values(user)])
+		const [result] = await db.query('INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, ?)', [
+            user.name,
+            user.email,
+            user.password,
+            user.is_admin
+        ])
+        
 		const [newUser] = await db.query('SELECT * FROM users WHERE id = ?', [result.insertId])
         
 		return newUser[0]

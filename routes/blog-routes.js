@@ -10,18 +10,6 @@ blogRouter.get('/', async (req, res) => {
 	res.render('blog', { activeNav: 'blog', articles })
 })
 
-blogRouter.get('/:slug', async (req, res, next) => {
-	const { slug } = req.params
-	const article = await Articles.fetchArticleBySlug(slug)
-
-	if (!article) return next()
-
-	res.render('blog-item', { activeNav: 'blog-item', article })
-})
-
-/**
- * Create routes
- */
 blogRouter.get('/create', redirectIfAuthenticated, async (req, res) => {
 	res.render('blog-create', { activeNav: 'blog-item' })
 })
@@ -36,9 +24,15 @@ blogRouter.post('/create', redirectIfAuthenticated, async (req, res) => {
 	res.redirect('/blog')
 })
 
-/**
- * Delete route
- */
+blogRouter.get('/:slug', async (req, res, next) => {
+	const { slug } = req.params
+	const article = await Articles.fetchArticleBySlug(slug)
+
+	if (!article) return next()
+
+	res.render('blog-item', { activeNav: 'blog-item', article })
+})
+
 blogRouter.post('/delete/:id', doesHavePermissionToDelete, async (req, res) => {
 	const { id } = req.params
 

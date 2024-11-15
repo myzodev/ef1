@@ -32,7 +32,15 @@ class Article {
 
 	static create = async (article) => {
         article.slug = slugify(article.title)
-		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [...Object.values(article)])
+        
+		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [
+            article.user_id,
+            article.title,
+            article.slug,
+            article.text,
+            article.category,
+            article.image
+        ])
 	}
 }
 

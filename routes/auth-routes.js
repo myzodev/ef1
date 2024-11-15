@@ -4,9 +4,6 @@ import { redirectIfAuthenticated } from '../middlewares/user-middleware.js'
 
 const authRouter = express.Router()
 
-/**
- * Register routes
- */
 authRouter.get('/register', redirectIfAuthenticated, (req, res) => {
 	req.session.message = ''
 	res.render('register', { layout: 'layouts/auth' })
@@ -28,9 +25,6 @@ authRouter.post('/register', redirectIfAuthenticated, async (req, res) => {
 	res.redirect('/')
 })
 
-/**
- * Login routes
- */
 authRouter.get('/login', redirectIfAuthenticated, (req, res) => {
 	req.session.message = ''
 	res.render('login', { layout: 'layouts/auth' })
@@ -52,9 +46,6 @@ authRouter.post('/login', redirectIfAuthenticated, async (req, res) => {
 	res.redirect('/')
 })
 
-/**
- * Logout route
- */
 authRouter.post('/logout', redirectIfAuthenticated, (req, res) => {
 	req.session.user = null
 	res.redirect('/')
