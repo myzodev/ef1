@@ -4,41 +4,41 @@ import { generateKeysValues } from '../utils/model.js'
 
 class User {
 	static find = async (data = {}, amount) => {
-        let query = 'SELECT * FROM users'
+		let query = 'SELECT * FROM users'
 
-        if (!data || Object.keys(data).length === 0) {
-            const [articles] = await db.query(query)
-            return articles
-        } else {
-            query = 'SELECT * FROM users WHERE '
-        }
+		if (!data || Object.keys(data).length === 0) {
+			const [articles] = await db.query(query)
+			return articles
+		} else {
+			query = 'SELECT * FROM users WHERE '
+		}
 
-        const { keys, values } = generateKeysValues(data)
+		const { keys, values } = generateKeysValues(data)
 
-        query += keys.map((key, index) => `${key} = '${values[index]}'`).join(' AND ')
+		query += keys.map((key, index) => `${key} = '${values[index]}'`).join(' AND ')
 
-        if (amount) query += ` LIMIT ${amount}`
+		if (amount) query += ` LIMIT ${amount}`
 
-        const [users] = await db.query(query)
+		const [users] = await db.query(query)
 
-        if (users.length == 1) return users[0]
-        if (users.length == 0) return null
+		if (users.length == 1) return users[0]
+		if (users.length == 0) return null
 
-        return users
+		return users
 	}
 
 	static create = async (user) => {
-        user.is_admin = user.is_admin ? 1 : 0
+		user.is_admin = user.is_admin ? 1 : 0
 
 		const [result] = await db.query('INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, ?)', [
-            user.name,
-            user.email,
-            user.password,
-            user.is_admin
-        ])
-        
+			user.name,
+			user.email,
+			user.password,
+			user.is_admin,
+		])
+
 		const [newUser] = await db.query('SELECT * FROM users WHERE id = ?', [result.insertId])
-        
+
 		return newUser[0]
 	}
 

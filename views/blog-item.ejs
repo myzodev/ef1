@@ -7,11 +7,11 @@
 		<% if (locals.user) { %>
             <div class="gap-8 flex">
                 <% if (article.user_id==locals.user.id) { %>
-                    <a class="button button-xs button-dark" href="/blog/<%= article.slug %>/update">Update</a>
+                    <a class="button button-xs button-dark" href="/blog/<%= article.slug %>/edit">Edit</a>
                 <% } %>
 
                 <% if (article.user_id==locals.user.id || locals.user.is_admin) { %>
-                    <form action="/blog/<%= article.id %>/delete" method="POST">
+                    <form action="/blog/<%= article.slug %>/delete" method="POST">
                         <button class="button button-xs button-error" type="submit">Delete</button>
                     </form>
                 <% } %>

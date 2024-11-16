@@ -1,78 +1,57 @@
 import Article from '../models/article-model.js'
-import { checkRequiredFields, generateResponse } from '../utils/auth.js'
 
 class Articles {
-	static fetchArticles = async () => {
-		try {
-			const articles = await Article.find()
+    static index = async (req, res) => {
+        const articles = await Article.find()
+	    res.render('blog', { activeNav: 'blog', articles })
+    }
 
-			if (!articles.length) return []
+    static blogCreate = async (req, res) => {
+        res.render('blog-form', { activeNav: 'blog-item', article: null })
+    }
 
-			return articles
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
+    static blogCreatePost = async (req, res) => {
+        const { title, text, category, image } = req.body
 
-	static fetchArticlesAmount = async (amount) => {
-		try {
-			const articles = await Article.find({}, amount)
+        if (!title || !text || !category || !image) return
 
-			if (!articles.length) return []
+        const userID = req.session.user.id
+        const newArticle = await Article.create({ userID, title, text, category, image })
 
-			return articles
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
+        res.redirect(`/blog/${newArticle.slug}`)
+    }
 
-	static fetchArticleBySlug = async (slug) => {
-		try {
-			const article = await Article.find({ slug })
+    static blogItem = async (req, res) => {
+        const { slug } = req.params
+        const article = await Article.find({ slug })
 
-			if (!article) return null
+        res.render('blog-item', { activeNav: 'blog-item', article })
+    }
 
-			return article
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
+    static blogItemUpdate = async (req, res) => {
+        const { slug } = req.params
+        const article = await Article.find({ slug })
 
-    static createNewArticle = async (article) => {
-		try {
-			const areFieldsValid = checkRequiredFields(article, ['title', 'text', 'category', 'image'])
+        res.render('blog-form', { activeNav: 'blog-item', article })
+    }
 
-			if (!areFieldsValid) {
-				return generateResponse(true, 'Please provide all fields.', {})
-			}
+    static blogItemUpdatePost = async (req, res) => {
+        const { id, title, text, category, image } = req.body
 
-			await Article.create(article)
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
+        if (!id || !title || !text || !category || !image) return
 
-    static updateArticle = async (article) => {
-		try {
-			const areFieldsValid = checkRequiredFields(article, ['title', 'text', 'category', 'image'])
+        const updateArticle = await Article.update({ id, title, text, category, image })
 
-			if (!areFieldsValid) {
-				return generateResponse(true, 'Please provide all fields.', {})
-			}
+        res.redirect(`/blog/${updateArticle.slug}`)
+    }
 
-			await Article.update(article)
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
+    static blogItemDelete = async (req, res) => {
+        const { slug } = req.params
 
-    static deleteArticleByID = async (id) => {
-		try {
-			await Article.findByIdAndDelete(id)
-		} catch (error) {
-			console.error(error.message)
-		}
-	}
+        await Article.findBySlugAndDelete(slug)
+
+        res.redirect('/blog')
+    }
 }
 
 export default Articles

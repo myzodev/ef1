@@ -26,10 +26,6 @@ class Article {
         return artciles
 	}
 
-    static findByIdAndDelete = async (id) => {
-		await db.query('DELETE FROM articles WHERE id = ?', [id])
-	}
-
 	static create = async (article) => {
         article.slug = slugify(article.title)
         
@@ -41,6 +37,8 @@ class Article {
             article.category,
             article.image
         ])
+
+        return article
 	}
 
     static update = async (article) => {
@@ -54,6 +52,12 @@ class Article {
             article.image, 
             article.id
         ])
+
+        return article
+	}
+
+    static findBySlugAndDelete = async (slug) => {
+		await db.query('DELETE FROM articles WHERE slug = ?', [slug])
 	}
 }
 

@@ -5,9 +5,9 @@ import expressLayouts from 'express-ejs-layouts'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
-import defaultRouter from './routes/default-routes.js'
-import authRouter from './routes/auth-routes.js'
-import blogRouter from './routes/blog-routes.js'
+import defaultRoutes from './routes/default-routes.js'
+import userRoutes from './routes/user-routes.js'
+import articleRoutes from './routes/article-routes.js'
 
 dotenv.config()
 
@@ -20,39 +20,39 @@ const APP_PORT = process.env.APP_PORT || 3000
 /**
  * Session store configuration
  */
-const MySQLStoreFunction = MySQLStore(session);
+const MySQLStoreFunction = MySQLStore(session)
 
 const sessionOptions = {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_DATABASE,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
+	host: process.env.DB_HOST,
+	port: process.env.DB_PORT,
+	database: process.env.DB_DATABASE,
+	user: process.env.DB_USERNAME,
+	password: process.env.DB_PASSWORD,
 }
 
 const sessionStore = new MySQLStoreFunction(sessionOptions)
 
 app.use(
-    session({
-        secret: process.env.APP_SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        store: sessionStore,
-    })
+	session({
+		secret: process.env.APP_SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+		store: sessionStore,
+	})
 )
 
 /**
  * Middleware to pass data to all views
  */
 app.use((req, res, next) => {
-    const user = req.session.user
-    res.locals.user = user
+	const user = req.session.user
+	res.locals.user = user
 
-    const message = req.session.message
-    res.locals.message = message
-    
-    next()
-});
+	const message = req.session.message
+	res.locals.message = message
+
+	next()
+})
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -66,13 +66,13 @@ app.set('layout', path.join(__dirname, 'views/layouts/default'))
 /**
  * Routes
  */
-app.use('/', defaultRouter)
-app.use('/auth', authRouter)
-app.use('/blog', blogRouter)
+app.use('/', defaultRoutes)
+app.use('/auth', userRoutes)
+app.use('/blog', articleRoutes)
 
 app.use((req, res) => {
-    res.status(404).render("errors/404", { activeNav: '404' });
-});
+	res.status(404).render('errors/404', { activeNav: '404' })
+})
 
 app.listen(APP_PORT, () => {
 	console.log(`App listening on http://localhost:${APP_PORT}`)

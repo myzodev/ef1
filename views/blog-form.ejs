@@ -10,7 +10,7 @@
         <div class="w-full h-10 bg-primary-300"></div>
     </header>
 
-    <form class="gap-8 flex flex-col" action="<%= article ? `/blog/${article.id}/update` : '/blog/create' %>" method="POST">
+    <form class="gap-8 flex flex-col" action="<%= article ? `/blog/${article.id}/edit` : '/blog/create' %>" method="POST">
         <input type="hidden" name="id" value="<%= article ? article.id : '' %>" hidden>
         <input type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
         <input type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />

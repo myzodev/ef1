@@ -1,19 +1,19 @@
 import express from 'express'
-import Articles from '../controllers/articles-controller.js'
+import Article from '../models/article-model.js'
 
-const defaultRouter = express.Router()
+const defaultRoutes = express.Router()
 
-defaultRouter.get('/', async (req, res) => {
-	const articles = await Articles.fetchArticlesAmount(7)
+defaultRoutes.get('/', async (req, res) => {
+	const articles = await Article.find({}, 7)
 	res.render('index', { activeNav: 'home', newestArticle: articles[0], articles: articles.slice(1, 7) })
 })
 
-defaultRouter.get('/drivers', (req, res) => {
+defaultRoutes.get('/drivers', (req, res) => {
 	res.render('drivers', { activeNav: 'drivers' })
 })
 
-defaultRouter.get('/teams', (req, res) => {
+defaultRoutes.get('/teams', (req, res) => {
 	res.render('teams', { activeNav: 'teams' })
 })
 
-export default defaultRouter
+export default defaultRoutes
