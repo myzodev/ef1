@@ -32,6 +32,7 @@ class Users {
 		delete newUser.password
 
 		req.session.user = newUser
+		req.flash('success', 'You have been registered successfully!')
 		res.redirect('/')
 	}
 
