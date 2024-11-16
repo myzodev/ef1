@@ -13,6 +13,6 @@ articleRoutes.post('/create', Articles.blogCreatePost)
 articleRoutes.get('/:slug', Articles.blogItem)
 articleRoutes.get('/:slug/edit', doesHavePermissionToEdit, Articles.blogItemUpdate)
 articleRoutes.post('/:slug/edit', Articles.blogItemUpdatePost)
-articleRoutes.post('/:slug/delete', doesHavePermissionToEdit, Articles.blogItemDelete)
+articleRoutes.post('/:slug/delete', Articles.blogItemDelete)
 
 export default articleRoutes
