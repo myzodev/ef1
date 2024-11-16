@@ -6,6 +6,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
 import defaultRoutes from './routes/default-routes.js'
+import adminRoutes from './routes/admin-routes.js'
 import userRoutes from './routes/user-routes.js'
 import articleRoutes from './routes/article-routes.js'
 
@@ -67,6 +68,7 @@ app.set('layout', path.join(__dirname, 'views/layouts/default'))
  * Routes
  */
 app.use('/', defaultRoutes)
+app.use('/admin', adminRoutes)
 app.use('/auth', userRoutes)
 app.use('/blog', articleRoutes)
 

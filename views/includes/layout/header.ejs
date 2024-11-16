@@ -22,30 +22,28 @@
 				<li>
 					<a class="navbar-menu-link <%= activeNav == 'teams' ? 'active' : '' %>" href="/teams">Teams</a>
 				</li>
-
-                <% if (!locals.user) { %>
-                    <li class="hidden xl:block">
-                        <a class="button button-xs button-white" href="/auth/login">Login</a>
-                    </li>
-                <% } else { %>
-                    <li class="hidden xl:block">
-                        <form action="/auth/logout" method="POST">
-                            <button class="navbar-menu-link" type="submit"><%= locals.user.name %></button>
-                        </form>
-                    </li>
-                <% } %>
 			</ul>
 
             <% if (!locals.user) { %>
-                <aside class="block xl:hidden">
-                    <a class="button button-primary button-base w-full" href="/auth/login">Login</a>
-                </aside>
+                <a class="button button-sm xl:button-xs button-primary xl:button-white" href="/auth/login">Login</a>
             <% } else { %>
-                <aside class="block xl:hidden">
-                    <form action="/auth/logout" method="POST">
-                        <button class="navbar-menu-link" type="submit"><%= locals.user.name %></button>
-                    </form>
-                </aside>
+                <div class="user-menu">
+                    <button class="user-menu-button" type="menu">
+                        <img src="/images/icons/user.svg" alt="">
+                    </button>
+
+                    <ul class="user-menu-list hidden">
+                        <li class="user-menu-list-item">
+                            <a class="w-full" href="/admin">Admin</a>
+                        </li>
+
+                        <li class="user-menu-list-item">
+                            <form action="/auth/logout" method="POST">
+                                <button class="w-full text-left" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             <% } %>
 		</div>
 	</div>
