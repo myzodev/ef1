@@ -8,13 +8,22 @@ class Users {
 	static userRegisterPost = async (req, res) => {
 		const user = req.body
 
-		if (!user.name || !user.email || !user.password || !user.repeatPassword) return
+		if (!user.name || !user.email || !user.password || !user.repeatPassword) {
+            req.flash('error', 'All fields are required!')
+            return res.redirect('/auth/register')
+        }
 
-		if (user.password !== user.repeatPassword) return
+		if (user.password !== user.repeatPassword) {
+            req.flash('error', 'Passwords do not match!')
+            return res.redirect('/auth/register')
+        }
 
 		const foundUser = await User.find({ email: user.email })
 
-		if (foundUser) return
+		if (foundUser) {
+            req.flash('error', 'User already exists!')
+            return res.redirect('/auth/register')
+        }
 
 		user.password = await User.hashPassword(user.password)
 
