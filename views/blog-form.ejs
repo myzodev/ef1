@@ -16,10 +16,10 @@
 		enctype="multipart/form-data"
 		method="POST"
 	>
-		<input type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" required />
-		<input type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" required />
+		<input type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
+		<input type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />
 		<input class="!rounded-0" type="file" name="image" value="<%= article ? article.image : '' %>" accept=".png,.jpg,.jpeg,.webp" />
-		<textarea placeholder="Text" name="text" rows="8" required><%= article ? article.text : '' %></textarea>
+		<textarea placeholder="Text" name="text" rows="8"><%= article ? article.text : '' %></textarea>
 		<button class="button button-base button-primary" type="submit"><%= article ? 'Save' : 'Create' %></button>
 	</form>
 </section>

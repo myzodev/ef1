@@ -6,11 +6,19 @@
 
     <body>
         <main class="pt-0">
-            <% if (locals.message) { %>
-                <div class="px-16 py-8 fixed top-56 left-1/2 -translate-x-1/2 z-100 rounded-8 font-semibold text-neutral-10 bg-[#f54c4c]">
-                    <%= locals.message %>
-                </div>
-            <% } %>
+            <div class="fixed left-1/2 bottom-16 -translate-x-1/2 z-100 pointer-events-none animate-flash-message">
+                <% if (successMessages.length> 0) { %>
+                    <% successMessages.forEach(function(message) { %>
+                        <p class="px-16 py-10 text-subheading font-semibold rounded-4 text-neutral-10 bg-[#2bd45b]"><%= message %></p>
+                    <% }) %>
+                <% } %>
+            
+                <% if (errorMessages.length> 0) { %>
+                    <% errorMessages.forEach(function(message) { %>
+                        <p class="px-16 py-10 text-subheading font-semibold rounded-4 text-neutral-10 bg-[#d42b2b]"><%= message %></p>
+                    <% }) %>
+                <% } %>
+            </div>
 
             <%- body %>
         </main>

@@ -12,13 +12,17 @@ class Articles {
 
 	static blogCreatePost = async (req, res) => {
 		const { title, text, category } = req.body
-		const image = `/uploads/${req.file.originalname}`
+		const image = `/uploads/${req.file?.originalname}`
 
-		if (!title || !text || !category || !image) return
+		if (!title || !text || !category || !image) {
+            req.flash('error', 'All fields are required!')
+            return res.redirect('/blog/create')
+        }
 
 		const userID = req.session.user.id
 		const { id, slug } = await Article.create({ userID, title, text, category, image })
 
+        req.flash('success', 'Article has been created successfully!')
 		res.redirect(`/blog/${slug}/${id}`)
 	}
 
@@ -41,7 +45,7 @@ class Articles {
 	}
 
 	static blogItemEditPost = async (req, res) => {
-		const { id } = req.params
+		const { slug, id } = req.params
 		const { title, text, category } = req.body
 		let image
 
@@ -52,11 +56,15 @@ class Articles {
 			image = article.image
 		}
 
-		if (!title || !text || !category || !image) return
+		if (!title || !text || !category || !image) {
+            req.flash('error', 'All fields are required!')
+            return res.redirect(`/blog/${slug}/${id}/edit`)
+        }
 
-		const { slug } = await Article.update({ id, title, text, category, image })
+		const { slug: newSlug } = await Article.update({ id, title, text, category, image })
 
-		res.redirect(`/blog/${slug}/${id}`)
+        req.flash('success', 'Article has been updated successfully!')
+		res.redirect(`/blog/${newSlug}/${id}`)
 	}
 
 	static blogItemDelete = async (req, res) => {
@@ -64,6 +72,7 @@ class Articles {
 
 		await Article.findBySlugAndDelete(slug)
 
+        req.flash('success', 'Article has been deleted successfully!')
 		res.redirect('/blog')
 	}
 }

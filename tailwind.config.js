@@ -23,7 +23,18 @@ module.exports = {
 
             backgroundSize: {
                 '16': '16px',
-            }
+            },
+
+            keyframes: {
+                'flash-message': {
+                    '0%': { opacity: '1' },
+                    '100%': { opacity: '0' },
+                },
+            },
+
+            animation: {
+                'flash-message': 'flash-message 300ms ease-out 2s forwards',
+            },
 		},
 
 		container: {

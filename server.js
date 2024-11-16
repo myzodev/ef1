@@ -2,6 +2,7 @@ import express from 'express'
 import session from 'express-session'
 import MySQLStore from 'express-mysql-session'
 import expressLayouts from 'express-ejs-layouts'
+import flash from 'connect-flash'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
@@ -42,6 +43,12 @@ app.use(
 	})
 )
 
+app.use(flash())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static('public'))
+app.use(expressLayouts)
+
 /**
  * Middleware to pass data to all views
  */
@@ -49,16 +56,11 @@ app.use((req, res, next) => {
 	const user = req.session.user
 	res.locals.user = user
 
-	const message = req.session.message
-	res.locals.message = message
+    res.locals.successMessages = req.flash('success');
+    res.locals.errorMessages = req.flash('error');
 
 	next()
 })
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(express.static('public'))
-app.use(expressLayouts)
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
