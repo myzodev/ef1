@@ -24,8 +24,8 @@ class Article {
 
 		const { keys, values } = generateKeysValues(data)
 
-		// Build the WHERE clause dynamically
-		query += keys.map((key) => `${key} = ?`).join(' AND ')
+		// Qualify ambiguous column names with the table name
+		query += keys.map((key) => `articles.${key} = ?`).join(' AND ')
 		queryParams.push(...values)
 
 		// Add LIMIT if amount is provided

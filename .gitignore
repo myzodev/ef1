@@ -1,7 +1,9 @@
 # Folders
 assets/
 dist/
-public/
+public/*
+public/uploads/*
+!public/uploads/
 
 # Dependency directories
 node_modules/

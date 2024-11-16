@@ -12,6 +12,7 @@ class User {
 				query += ` LIMIT ?`
 				queryParams.push(amount)
 			}
+
 			const [users] = await db.query(query, queryParams)
 			return users
 		} else {
@@ -21,7 +22,7 @@ class User {
 		const { keys, values } = generateKeysValues(data)
 
 		// Build the WHERE clause dynamically
-		query += keys.map((key) => `${key} = ?`).join(' AND ')
+		query += keys.map((key) => `users.${key} = ?`).join(' AND ')
 		queryParams.push(...values)
 
 		// Add LIMIT if amount is provided

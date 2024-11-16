@@ -10,12 +10,12 @@
         <div class="w-full h-10 bg-primary-300"></div>
     </header>
 
-    <form class="gap-8 flex flex-col" action="<%= article ? `/blog/${article.id}/edit` : '/blog/create' %>" method="POST">
-        <input type="hidden" name="id" value="<%= article ? article.id : '' %>" hidden>
-        <input type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
-        <input type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />
-        <input type="text" placeholder="Image URL" name="image" value="<%= article ? article.image : '' %>" />
-        <textarea placeholder="Text" name="text" rows="8"><%= article ? article.text : '' %></textarea>
+    <form class="gap-8 flex flex-col" action="<%= article ? `/blog/${article.id}/edit` : '/blog/create' %>" enctype="multipart/form-data" method="POST">
+        <input type="hidden" name="id" value="<%= article ? article.id : '' %>" hidden> 
+        <input type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" required />
+        <input type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" required />
+        <input class="!rounded-0" type="file" name="image" value="<%= article ? article.image : '' %>" accept=".png,.jpg,.jpeg,.webp" />
+        <textarea placeholder="Text" name="text" rows="8" required><%= article ? article.text : '' %></textarea>
         <button class="button button-base button-primary" type="submit"><%= article ? 'Save' : 'Create' %></button>
     </form>
 </section>

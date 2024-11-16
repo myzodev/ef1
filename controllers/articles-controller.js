@@ -11,7 +11,8 @@ class Articles {
     }
 
     static blogCreatePost = async (req, res) => {
-        const { title, text, category, image } = req.body
+        const { title, text, category } = req.body
+        const image = `/uploads/${req.file.originalname}`
 
         if (!title || !text || !category || !image) return
 
@@ -28,15 +29,23 @@ class Articles {
         res.render('blog-item', { activeNav: 'blog-item', article })
     }
 
-    static blogItemUpdate = async (req, res) => {
+    static blogItemEdit = async (req, res) => {
         const { slug } = req.params
         const article = await Article.find({ slug })
 
         res.render('blog-form', { activeNav: 'blog-item', article })
     }
 
-    static blogItemUpdatePost = async (req, res) => {
-        const { id, title, text, category, image } = req.body
+    static blogItemEditPost = async (req, res) => {
+        const { id, title, text, category } = req.body
+        let image
+
+        if (req.file) {
+            image = `/uploads/${req.file.originalname}`
+        } else {
+            const article = await Article.find({ id })
+            image = article.image
+        }
 
         if (!id || !title || !text || !category || !image) return
 
