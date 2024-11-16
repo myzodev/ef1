@@ -2,7 +2,10 @@
 
 <section class="container mt-16">
 	<header class="mb-16 flex justify-between items-center">
-		<p><%= article.user_id %></p>
+        <div>
+            <p class="font-semibold"><%= article.user_name %></p>
+            <small><%= article.user_email %></small>
+        </div>
         
 		<% if (locals.user) { %>
             <div class="gap-8 flex">
@@ -19,7 +22,7 @@
         <% } %>
 	</header>
 
-	<figure class="aspect-w-16 aspect-h-9 rounded-16 overflow-hidden">
+	<figure class="aspect-w-16 aspect-h-7 rounded-16 overflow-hidden">
 		<img class="object-cover" src="<%= article.image %>" alt="<%= article.title %>" />
 	</figure>
 

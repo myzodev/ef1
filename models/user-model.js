@@ -5,24 +5,36 @@ import { generateKeysValues } from '../utils/model.js'
 class User {
 	static find = async (data = {}, amount) => {
 		let query = 'SELECT * FROM users'
+		let queryParams = []
 
 		if (!data || Object.keys(data).length === 0) {
-			const [articles] = await db.query(query)
-			return articles
+			if (amount) {
+				query += ` LIMIT ?`
+				queryParams.push(amount)
+			}
+			const [users] = await db.query(query, queryParams)
+			return users
 		} else {
-			query = 'SELECT * FROM users WHERE '
+			query += ' WHERE '
 		}
 
 		const { keys, values } = generateKeysValues(data)
 
-		query += keys.map((key, index) => `${key} = '${values[index]}'`).join(' AND ')
+		// Build the WHERE clause dynamically
+		query += keys.map((key) => `${key} = ?`).join(' AND ')
+		queryParams.push(...values)
 
-		if (amount) query += ` LIMIT ${amount}`
+		// Add LIMIT if amount is provided
+		if (amount) {
+			query += ` LIMIT ?`
+			queryParams.push(amount)
+		}
 
-		const [users] = await db.query(query)
+		// Execute the query with parameters
+		const [users] = await db.query(query, queryParams)
 
-		if (users.length == 1) return users[0]
-		if (users.length == 0) return null
+		if (users.length === 1) return users[0]
+		if (users.length === 0) return null
 
 		return users
 	}

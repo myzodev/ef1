@@ -2,61 +2,78 @@ import db from '../database/db.js'
 import { generateKeysValues, slugify } from '../utils/model.js'
 
 class Article {
-    static find = async (data = {}, amount) => {
-        let query = 'SELECT * FROM articles'
+	static find = async (data = {}, amount) => {
+		let query = `
+            SELECT articles.*, users.name AS user_name, users.email AS user_email
+            FROM articles INNER JOIN users ON articles.user_id = users.id
+        `
 
-        if (!data || Object.keys(data).length === 0) {
-            const [articles] = await db.query(query)
-            return articles
-        } else {
-            query = 'SELECT * FROM articles WHERE '
-        }
+		let queryParams = []
 
-        const { keys, values } = generateKeysValues(data)
+		if (!data || Object.keys(data).length === 0) {
+			if (amount) {
+				query += ` LIMIT ?`
+				queryParams.push(amount)
+			}
 
-        query += keys.map((key, index) => `${key} = '${values[index]}'`).join(' AND ')
+			const [articles] = await db.query(query, queryParams)
+			return articles
+		} else {
+			query += 'WHERE '
+		}
 
-        if (amount) query += ` LIMIT ${amount}`
+		const { keys, values } = generateKeysValues(data)
 
-        const [articles] = await db.query(query)
+		// Build the WHERE clause dynamically
+		query += keys.map((key) => `${key} = ?`).join(' AND ')
+		queryParams.push(...values)
 
-        if (articles.length == 1) return articles[0]
-        if (articles.length == 0) return []
+		// Add LIMIT if amount is provided
+		if (amount) {
+			query += ` LIMIT ?`
+			queryParams.push(amount)
+		}
 
-        return artciles
+		// Execute the query with parameters
+		const [articles] = await db.query(query, queryParams)
+
+		if (articles.length === 1) return articles[0]
+		if (articles.length === 0) return []
+
+		return articles
 	}
 
 	static create = async (article) => {
-        article.slug = slugify(article.title)
-        
+		article.slug = slugify(article.title)
+
 		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [
-            article.userID,
-            article.title,
-            article.slug,
-            article.text,
-            article.category,
-            article.image
-        ])
+			article.userID,
+			article.title,
+			article.slug,
+			article.text,
+			article.category,
+			article.image,
+		])
 
-        return article
+		return article
 	}
 
-    static update = async (article) => {
-        article.slug = slugify(article.title)
-        
+	static update = async (article) => {
+		article.slug = slugify(article.title)
+
 		await db.query('UPDATE articles SET title = ?, slug = ?, text = ?, category = ?, image = ? WHERE id = ?', [
-            article.title, 
-            article.slug, 
-            article.text, 
-            article.category, 
-            article.image, 
-            article.id
-        ])
+			article.title,
+			article.slug,
+			article.text,
+			article.category,
+			article.image,
+			article.id,
+		])
 
-        return article
+		return article
 	}
 
-    static findBySlugAndDelete = async (slug) => {
+	static findBySlugAndDelete = async (slug) => {
 		await db.query('DELETE FROM articles WHERE slug = ?', [slug])
 	}
 }
