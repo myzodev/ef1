@@ -1,66 +1,71 @@
 import Article from '../models/article-model.js'
 
 class Articles {
-    static index = async (req, res) => {
-        const articles = await Article.find()
-	    res.render('blog', { activeNav: 'blog', articles })
-    }
+	static index = async (req, res) => {
+		const articles = await Article.find()
+		res.render('blog', { activeNav: 'blog', articles })
+	}
 
-    static blogCreate = async (req, res) => {
-        res.render('blog-form', { activeNav: 'blog-item', article: null })
-    }
+	static blogCreate = async (req, res) => {
+		res.render('blog-form', { activeNav: 'blog-item', article: null })
+	}
 
-    static blogCreatePost = async (req, res) => {
-        const { title, text, category } = req.body
-        const image = `/uploads/${req.file.originalname}`
+	static blogCreatePost = async (req, res) => {
+		const { title, text, category } = req.body
+		const image = `/uploads/${req.file.originalname}`
 
-        if (!title || !text || !category || !image) return
+		if (!title || !text || !category || !image) return
 
-        const userID = req.session.user.id
-        const newArticle = await Article.create({ userID, title, text, category, image })
+		const userID = req.session.user.id
+		const { id, slug } = await Article.create({ userID, title, text, category, image })
 
-        res.redirect(`/blog/${newArticle.slug}`)
-    }
+		res.redirect(`/blog/${slug}/${id}`)
+	}
 
-    static blogItem = async (req, res) => {
-        const { slug } = req.params
-        const article = await Article.find({ slug })
+	static blogItem = async (req, res) => {
+		const { slug, id } = req.params
+		const article = await Article.find({ slug, id })
 
-        res.render('blog-item', { activeNav: 'blog-item', article })
-    }
-
-    static blogItemEdit = async (req, res) => {
-        const { slug } = req.params
-        const article = await Article.find({ slug })
-
-        res.render('blog-form', { activeNav: 'blog-item', article })
-    }
-
-    static blogItemEditPost = async (req, res) => {
-        const { id, title, text, category } = req.body
-        let image
-
-        if (req.file) {
-            image = `/uploads/${req.file.originalname}`
-        } else {
-            const article = await Article.find({ id })
-            image = article.image
+        if (article.length === 0) {
+            return res.status(404).render('errors/404', { activeNav: '404' })
         }
 
-        if (!id || !title || !text || !category || !image) return
+		res.render('blog-item', { activeNav: 'blog-item', article })
+	}
 
-        const updateArticle = await Article.update({ id, title, text, category, image })
+	static blogItemEdit = async (req, res) => {
+		const { slug, id } = req.params
+		const article = await Article.find({ slug, id })
 
-        res.redirect(`/blog/${updateArticle.slug}`)
-    }
+		res.render('blog-form', { activeNav: 'blog-item', article })
+	}
 
-    static blogItemDelete = async (req, res) => {
-        const { slug } = req.params
+	static blogItemEditPost = async (req, res) => {
+		const { id } = req.params
+		const { title, text, category } = req.body
+		let image
 
-        await Article.findBySlugAndDelete(slug)
+		if (req.file) {
+			image = `/uploads/${req.file.originalname}`
+		} else {
+			const article = await Article.find({ id })
+			image = article.image
+		}
 
-        res.redirect('/blog')
-    }
+		if (!title || !text || !category || !image) return
+
+		const { slug } = await Article.update({ id, title, text, category, image })
+
+		res.redirect(`/blog/${slug}/${id}`)
+	}
+
+	static blogItemDelete = async (req, res) => {
+		const { slug } = req.params
+
+		await Article.findBySlugAndDelete(slug)
+
+		res.redirect('/blog')
+	}
 }
 
 export default Articles

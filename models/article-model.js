@@ -46,7 +46,7 @@ class Article {
 	static create = async (article) => {
 		article.slug = slugify(article.title)
 
-		await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [
+		const [result] = await db.query('INSERT INTO articles (user_id, title, slug, text, category, image) VALUES (?, ?, ?, ?, ?, ?)', [
 			article.userID,
 			article.title,
 			article.slug,
@@ -54,6 +54,8 @@ class Article {
 			article.category,
 			article.image,
 		])
+
+		article.id = result.insertId
 
 		return article
 	}

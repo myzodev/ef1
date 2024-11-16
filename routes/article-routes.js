@@ -11,9 +11,9 @@ articleRoutes.get('/', Articles.index)
 articleRoutes.get('/create', redirectIfAuthenticated, Articles.blogCreate)
 articleRoutes.post('/create', fileUpload.single('image'), Articles.blogCreatePost)
 
-articleRoutes.get('/:slug', Articles.blogItem)
-articleRoutes.get('/:slug/edit', doesHavePermissionToEdit, Articles.blogItemEdit)
-articleRoutes.post('/:slug/edit', fileUpload.single('image'), Articles.blogItemEditPost)
-articleRoutes.post('/:slug/delete', Articles.blogItemDelete)
+articleRoutes.get('/:slug/:id', Articles.blogItem)
+articleRoutes.get('/:slug/:id/edit', doesHavePermissionToEdit, Articles.blogItemEdit)
+articleRoutes.post('/:slug/:id/edit', fileUpload.single('image'), Articles.blogItemEditPost)
+articleRoutes.post('/:slug/:id/delete', Articles.blogItemDelete)
 
 export default articleRoutes

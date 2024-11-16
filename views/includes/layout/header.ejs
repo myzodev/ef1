@@ -39,7 +39,10 @@
 
                         <li class="user-menu-list-item">
                             <form action="/auth/logout" method="POST">
-                                <button class="w-full text-left" type="submit">Logout</button>
+                                <button class="gap-4 w-full flex items-center text-left" type="submit">
+                                    Logout
+                                    <span class="text-xs font-normal text-neutral-400">(<%= locals.user.name %>)</span>
+                                </button>
                             </form>
                         </li>
                     </ul>

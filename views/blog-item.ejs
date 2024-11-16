@@ -1,20 +1,26 @@
 <%- include('./includes/components/counter') %>
 
 <section class="container mt-16">
-	<header class="mb-16 flex justify-between items-center">
-        <div>
-            <p class="font-semibold"><%= article.user_name %></p>
-            <small><%= article.user_email %></small>
+	<header class="mb-16 flex justify-between items-center flex-wrap">
+        <div class="gap-8 flex items-center">
+            <figure class="p-10 rounded-full bg-neutral-30">
+                <img class="size-24" src="/images/icons/user.svg" alt="">
+            </figure>
+
+            <div>
+                <p class="-mb-4 font-semibold"><%= article.user_name %></p>
+                <small class="text-xs"><%= article.user_email %></small>
+            </div>
         </div>
         
 		<% if (locals.user) { %>
             <div class="gap-8 flex">
                 <% if (article.user_id==locals.user.id) { %>
-                    <a class="button button-xs button-dark" href="/blog/<%= article.slug %>/edit">Edit</a>
+                    <a class="button button-xs button-dark" href="/blog/<%= article.slug %>/<%= article.id %>/edit">Edit</a>
                 <% } %>
 
                 <% if (article.user_id==locals.user.id || locals.user.is_admin) { %>
-                    <form action="/blog/<%= article.slug %>/delete" method="POST">
+                    <form action="/blog/<%= article.slug %>/<%= article.id %>/delete" method="POST">
                         <button class="button button-xs button-error" type="submit">Delete</button>
                     </form>
                 <% } %>
