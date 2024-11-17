@@ -1,0 +1,21 @@
+<section class="container pt-112">
+    <header class="mb-40 gap-16 flex items-center">
+        <h2 class="shrink-0">Profile</h2>
+        <div class="w-full h-10 bg-primary-300"></div>
+    </header>
+
+    <form 
+        class="gap-8 flex flex-col" 
+        action=""
+        enctype="multipart/form-data" 
+        method="POST"
+    >
+        <input type="text" placeholder="Name" name="name" value="<%= locals.user.name %>" />
+        <input type="email" placeholder="Email" name="email" value="<%= locals.user.email %>" />
+        <input type="password" placeholder="New password" name="password" value="<%= locals.user.password %>" />
+        <input type="password" placeholder="Repeat new password" name="repeatPassword" value="<%= locals.user.password %>" />
+        <input class="!rounded-0" type="file" name="avatar" value="<%= locals.user.avatar %>" accept=".png,.jpg,.jpeg,.webp" />
+
+        <button class="button button-base button-primary" type="submit">Save changes</button>
+    </form>
+</section>

@@ -2,7 +2,7 @@ import User from '../models/user-model.js'
 
 class Users {
 	static userRegister = (req, res) => {
-		res.render('register', { layout: 'layouts/auth' })
+		res.render('auth/register', { layout: 'layouts/auth' })
 	}
 
 	static userRegisterPost = async (req, res) => {
@@ -37,7 +37,7 @@ class Users {
 	}
 
 	static userLogin = (req, res) => {
-		res.render('login', { layout: 'layouts/auth' })
+		res.render('auth/login', { layout: 'layouts/auth' })
 	}
 
 	static userLoginPost = async (req, res) => {

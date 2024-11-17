@@ -1,4 +1,4 @@
-<%- include('./includes/components/counter') %>
+<%- include('../includes/components/counter') %>
 
 <section class="container">
     <div class="flag-pattern"></div>
@@ -19,7 +19,7 @@
         <% if (articles.length) { %>
             <ul class="gap-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <% articles.forEach(article=> { %>
-                    <%- include('includes/components/article', { article }) %>
+                    <%- include('../includes/components/article', { article }) %>
                 <% }) %>
             </ul>
         <% } else { %>
@@ -28,4 +28,4 @@
     </div>
 </section>
 
-<%- include('./includes/blocks/section-explore') %>
+<%- include('../includes/blocks/section-explore') %>

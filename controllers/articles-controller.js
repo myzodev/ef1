@@ -3,11 +3,11 @@ import Article from '../models/article-model.js'
 class Articles {
 	static index = async (req, res) => {
 		const articles = await Article.find()
-		res.render('blog', { activeNav: 'blog', articles })
+		res.render('blog/blog', { activeNav: 'blog', articles })
 	}
 
 	static blogCreate = async (req, res) => {
-		res.render('blog-form', { activeNav: 'blog-item', article: null })
+		res.render('blog/blog-form', { activeNav: 'blog-item', article: null })
 	}
 
 	static blogCreatePost = async (req, res) => {
@@ -34,14 +34,14 @@ class Articles {
             return res.status(404).render('errors/404', { activeNav: '404' })
         }
 
-		res.render('blog-item', { activeNav: 'blog-item', article })
+		res.render('blog/blog-item', { activeNav: 'blog-item', article })
 	}
 
 	static blogItemEdit = async (req, res) => {
 		const { slug, id } = req.params
 		const article = await Article.find({ slug, id })
 
-		res.render('blog-form', { activeNav: 'blog-item', article })
+		res.render('blog/blog-form', { activeNav: 'blog-item', article })
 	}
 
 	static blogItemEditPost = async (req, res) => {
