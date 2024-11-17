@@ -1,4 +1,4 @@
-export const redirectIfAuthenticated = (req, res, next) => {
+export const checkUserLoggedIn = (req, res, next) => {
 	const isAuthRoute = ['/register', '/login'].includes(req.path)
 	const isUserLoggedIn = req.session.user
 
@@ -14,5 +14,5 @@ export const redirectIfAuthenticated = (req, res, next) => {
 		return next()
 	}
 
-	return res.redirect('/auth/login')
+	res.redirect('/auth/login')
 }
