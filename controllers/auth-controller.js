@@ -1,11 +1,11 @@
 import User from '../models/user-model.js'
 
-class Users {
-	static userRegister = (req, res) => {
+class Auth {
+	static register = (req, res) => {
 		res.render('auth/register', { layout: 'layouts/auth' })
 	}
 
-	static userRegisterPost = async (req, res) => {
+	static registerPost = async (req, res) => {
 		const user = req.body
 
 		if (!user.name || !user.email || !user.password || !user.repeatPassword) {
@@ -36,11 +36,11 @@ class Users {
 		res.redirect('/')
 	}
 
-	static userLogin = (req, res) => {
+	static login = (req, res) => {
 		res.render('auth/login', { layout: 'layouts/auth' })
 	}
 
-	static userLoginPost = async (req, res) => {
+	static loginPost = async (req, res) => {
 		const user = req.body
 
 		if (!user.email || !user.password) {
@@ -69,11 +69,11 @@ class Users {
 		res.redirect('/')
 	}
 
-	static userLogout = (req, res) => {
+	static logoutPost = (req, res) => {
 		req.session.user = null
         req.flash('success', 'You have been logged out successfully!')
 		res.redirect('/')
 	}
 }
 
-export default Users
+export default Auth

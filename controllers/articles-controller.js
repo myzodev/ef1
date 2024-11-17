@@ -6,11 +6,11 @@ class Articles {
 		res.render('blog/blog', { activeNav: 'blog', articles })
 	}
 
-	static blogCreate = async (req, res) => {
+	static articleCreate = async (req, res) => {
 		res.render('blog/blog-form', { activeNav: 'blog-item', article: null })
 	}
 
-	static blogCreatePost = async (req, res) => {
+	static articleCreatePost = async (req, res) => {
 		const { title, text, category } = req.body
 		const image = `/uploads/${req.file?.filename}`
 
@@ -26,7 +26,7 @@ class Articles {
 		res.redirect(`/blog/${slug}/${id}`)
 	}
 
-	static blogItem = async (req, res) => {
+	static articleItem = async (req, res) => {
 		const { slug, id } = req.params
 		const article = await Article.find({ slug, id })
 
@@ -37,14 +37,14 @@ class Articles {
 		res.render('blog/blog-item', { activeNav: 'blog-item', article })
 	}
 
-	static blogItemEdit = async (req, res) => {
+	static articleItemEdit = async (req, res) => {
 		const { slug, id } = req.params
 		const article = await Article.find({ slug, id })
 
 		res.render('blog/blog-form', { activeNav: 'blog-item', article })
 	}
 
-	static blogItemEditPost = async (req, res) => {
+	static articleItemEditPost = async (req, res) => {
 		const { slug, id } = req.params
 		const { title, text, category } = req.body
 		let image
@@ -67,7 +67,7 @@ class Articles {
 		res.redirect(`/blog/${newSlug}/${id}`)
 	}
 
-	static blogItemDelete = async (req, res) => {
+	static articleItemDeletePost = async (req, res) => {
 		const { slug } = req.params
 
 		await Article.findBySlugAndDelete(slug)

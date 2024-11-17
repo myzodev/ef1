@@ -5,11 +5,11 @@ class Admin {
         res.render('admin/admin', { activeNav: 'admin' })
     }
 
-	static profile = async (req, res) => {
+	static profileEdit = async (req, res) => {
         res.render('admin/profile', { activeNav: 'admin' })
     }
 
-    static profileEdit = async (req, res) => {
+    static profileEditPost = async (req, res) => {
         let { name, email, password, repeatPassword } = req.body
         let avatar = null
 
