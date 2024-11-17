@@ -21,4 +21,4 @@ All commands are run from the root of the project, from a terminal:
 | `npm run watch-server`  | Starts the server with `nodemon` for automatic restarts on changes. |
 | `npm run watch-mix`     | Watches and compiles assets using Laravel Mix.                      |
 | `npm run db-seed`       | Seeds the database with initial data.                               |
-| `npm run build`         | Builds site assets to `./dist/`.                                    |
+| `npm run build`         | Builds site assets to `./public/`.                                  |
