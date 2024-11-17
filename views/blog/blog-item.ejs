@@ -5,7 +5,7 @@
         <div class="gap-8 flex items-center">
             <figure class="size-40 flex justify-center items-center rounded-full overflow-hidden bg-neutral-30">
                 <% if (article.user_avatar) { %>
-                    <img src="<%= article.user_avatar %>" alt="Profile picture">
+                    <img class="object-cover" src="<%= article.user_avatar %>" alt="Profile picture">
                 <% } else { %>
                     <img class="size-24" src="/images/icons/user.svg" alt="User icon">
                 <% } %>
