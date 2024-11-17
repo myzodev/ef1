@@ -31,7 +31,6 @@ class User {
 			queryParams.push(amount)
 		}
 
-		// Execute the query with parameters
 		const [users] = await db.query(query, queryParams)
 
 		if (users.length === 1) return users[0]
@@ -53,6 +52,41 @@ class User {
 		const [newUser] = await db.query('SELECT * FROM users WHERE id = ?', [result.insertId])
 
 		return newUser[0]
+	}
+
+    static update = async (user) => {
+		const fields = []
+        const values = []
+
+        if (user.name) {
+            fields.push('name = ?')
+            values.push(user.name)
+        }
+
+        if (user.email) {
+            fields.push('email = ?')
+            values.push(user.email)
+        }
+
+        if (user.avatar) {
+            fields.push('avatar = ?')
+            values.push(user.avatar)
+        }
+        
+        if (user.password) {
+            fields.push('password = ?')
+            values.push(user.password)
+        }
+
+        values.push(user.id)
+
+        const query = `UPDATE users SET ${fields.join(', ')} WHERE id = ?`
+
+        await db.query(query, values)
+
+        const [updatedUser] = await db.query('SELECT * FROM users WHERE id = ?', [user.id])
+
+		return updatedUser[0]
 	}
 
 	static hashPassword = async (password) => {

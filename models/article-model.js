@@ -4,7 +4,7 @@ import { generateKeysValues, slugify } from '../utils/model.js'
 class Article {
 	static find = async (data = {}, amount) => {
 		let query = `
-            SELECT articles.*, users.name AS user_name, users.email AS user_email
+            SELECT articles.*, users.name AS user_name, users.email AS user_email, users.avatar AS user_avatar
             FROM articles INNER JOIN users ON articles.user_id = users.id
         `
 
@@ -34,7 +34,6 @@ class Article {
 			queryParams.push(amount)
 		}
 
-		// Execute the query with parameters
 		const [articles] = await db.query(query, queryParams)
 
 		if (articles.length === 1) return articles[0]
@@ -61,19 +60,40 @@ class Article {
 	}
 
 	static update = async (article) => {
-		article.slug = slugify(article.title)
+        const fields = [];
+        const values = [];
 
-		await db.query('UPDATE articles SET title = ?, slug = ?, text = ?, category = ?, image = ? WHERE id = ?', [
-			article.title,
-			article.slug,
-			article.text,
-			article.category,
-			article.image,
-			article.id,
-		])
+        if (article.title) {
+            article.slug = slugify(article.title);
+            fields.push('title = ?');
+            fields.push('slug = ?');
+            values.push(article.title);
+            values.push(article.slug);
+        }
 
-		return article
-	}
+        if (article.text) {
+            fields.push('text = ?');
+            values.push(article.text);
+        }
+
+        if (article.category) {
+            fields.push('category = ?');
+            values.push(article.category);
+        }
+
+        if (article.image) {
+            fields.push('image = ?');
+            values.push(article.image);
+        }
+
+        values.push(article.id);
+
+        const query = `UPDATE articles SET ${fields.join(', ')} WHERE id = ?`;
+
+        await db.query(query, values);
+
+        return article;
+    }
 
 	static findBySlugAndDelete = async (slug) => {
 		await db.query('DELETE FROM articles WHERE slug = ?', [slug])

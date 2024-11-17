@@ -6,15 +6,15 @@
 
     <form 
         class="gap-8 flex flex-col" 
-        action=""
+        action="/admin/profile/edit"
         enctype="multipart/form-data" 
         method="POST"
     >
         <input type="text" placeholder="Name" name="name" value="<%= locals.user.name %>" />
         <input type="email" placeholder="Email" name="email" value="<%= locals.user.email %>" />
-        <input type="password" placeholder="New password" name="password" value="<%= locals.user.password %>" />
-        <input type="password" placeholder="Repeat new password" name="repeatPassword" value="<%= locals.user.password %>" />
-        <input class="!rounded-0" type="file" name="avatar" value="<%= locals.user.avatar %>" accept=".png,.jpg,.jpeg,.webp" />
+        <input type="password" placeholder="New password" name="password" />
+        <input type="password" placeholder="Repeat new password" name="repeatPassword" />
+        <input class="!rounded-0" type="file" name="avatar" accept=".png,.jpg,.jpeg,.webp" />
 
         <button class="button button-base button-primary" type="submit">Save changes</button>
     </form>

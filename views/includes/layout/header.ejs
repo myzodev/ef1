@@ -29,7 +29,11 @@
             <% } else { %>
                 <div class="user-menu">
                     <button class="user-menu-button" type="menu">
-                        <img src="/images/icons/user.svg" alt="">
+                        <% if (locals.user.avatar) { %>
+                            <img src="<%= locals.user.avatar %>" alt="Profile picture">
+                        <% } else { %>
+                            <img class="default-icon" src="/images/icons/user.svg" alt="User icon">
+                        <% } %>
                     </button>
 
                     <ul class="user-menu-list hidden">

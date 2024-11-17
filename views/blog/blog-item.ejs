@@ -3,8 +3,12 @@
 <section class="container mt-16">
 	<header class="mb-16 flex justify-between items-center flex-wrap">
         <div class="gap-8 flex items-center">
-            <figure class="p-10 rounded-full bg-neutral-30">
-                <img class="size-24" src="/images/icons/user.svg" alt="">
+            <figure class="size-40 flex justify-center items-center rounded-full overflow-hidden bg-neutral-30">
+                <% if (article.user_avatar) { %>
+                    <img src="<%= article.user_avatar %>" alt="Profile picture">
+                <% } else { %>
+                    <img class="size-24" src="/images/icons/user.svg" alt="User icon">
+                <% } %>
             </figure>
 
             <div>
@@ -15,11 +19,11 @@
         
 		<% if (locals.user) { %>
             <div class="gap-8 flex">
-                <% if (article.user_id==locals.user.id) { %>
+                <% if (article.user_id == locals.user.id) { %>
                     <a class="button button-xs button-dark" href="/blog/<%= article.slug %>/<%= article.id %>/edit">Edit</a>
                 <% } %>
 
-                <% if (article.user_id==locals.user.id || locals.user.is_admin) { %>
+                <% if (article.user_id == locals.user.id || locals.user.is_admin) { %>
                     <form action="/blog/<%= article.slug %>/<%= article.id %>/delete" method="POST">
                         <button class="button button-xs button-error" type="submit">Delete</button>
                     </form>
@@ -34,7 +38,6 @@
 
 	<article>
 		<h2 class="mt-40 mb-24 text-neutral-900"><%= article.title %></h2>
-
 		<p><%- article.text %></p>
 	</article>
 </section>

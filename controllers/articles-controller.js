@@ -12,7 +12,7 @@ class Articles {
 
 	static blogCreatePost = async (req, res) => {
 		const { title, text, category } = req.body
-		const image = `/uploads/${req.file?.originalname}`
+		const image = `/uploads/${req.file?.filename}`
 
 		if (!title || !text || !category || !image) {
             req.flash('error', 'All fields are required!')

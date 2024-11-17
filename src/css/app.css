@@ -179,7 +179,11 @@
     }
 
     .user-menu-button {
-        @apply p-10 xl:p-6 rounded-full bg-neutral-10;
+        @apply size-40 flex justify-center items-center rounded-full overflow-hidden bg-neutral-10;
+    }
+
+    .user-menu-button .default-icon {
+        @apply size-24;
     }
 
     .user-menu-list {
