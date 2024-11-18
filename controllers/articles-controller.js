@@ -50,7 +50,7 @@ class Articles {
 		let image
 
 		if (req.file) {
-			image = `/uploads/${req.file.originalname}`
+			image = `/uploads/${req.file.filename}`
 		} else {
 			const article = await Article.find({ id })
 			image = article.image
