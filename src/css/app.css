@@ -66,6 +66,10 @@
 		@apply w-full;
 	}
 
+	label {
+		@apply mb-4 inline-block text-sm font-semibold;
+	}
+
 	h1 {
 		@apply h1;
 	}
@@ -174,30 +178,30 @@
 		transform: rotate(-45deg);
 	}
 
-    .user-menu {
-        @apply flex justify-end relative;
-    }
+	.user-menu {
+		@apply flex justify-end relative;
+	}
 
-    .user-menu-button {
-        @apply size-40 flex justify-center items-center rounded-full overflow-hidden bg-neutral-10;
-    }
+	.user-menu-button {
+		@apply size-40 flex justify-center items-center rounded-full overflow-hidden bg-neutral-10;
+	}
 
-    .user-menu-button .default-icon {
-        @apply size-24;
-    }
+	.user-menu-button .default-icon {
+		@apply size-24;
+	}
 
-    .user-menu-list {
-        @apply my-8 w-[200px] absolute xl:top-full right-0 bottom-full xl:bottom-unset overflow-hidden rounded-6 shadow-xl text-neutral-900 bg-neutral-10;
-    }
+	.user-menu-list {
+		@apply my-8 w-[200px] absolute xl:top-full right-0 bottom-full xl:bottom-unset overflow-hidden rounded-6 shadow-xl text-neutral-900 bg-neutral-10;
+	}
 
-    .user-menu-list-item a,
-    .user-menu-list-item button {
-        @apply px-10 py-8 text-sm font-semibold hover:bg-neutral-30;
-    }
+	.user-menu-list-item a,
+	.user-menu-list-item button {
+		@apply px-10 py-8 text-sm font-semibold hover:bg-neutral-30;
+	}
 
-    .user-menu-list-item button {
-        @apply border-t border-neutral-40;
-    }
+	.user-menu-list-item button {
+		@apply border-t border-neutral-40;
+	}
 
 	.flag-pattern {
 		@apply my-16 h-120 rounded-16 bg-[url('../images/flag-pattern.avif')] bg-16;

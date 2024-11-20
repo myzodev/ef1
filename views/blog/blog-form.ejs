@@ -16,11 +16,27 @@
 		enctype="multipart/form-data"
 		method="POST"
 	>
-		<input type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
-		<input type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />
-		<input class="!rounded-0" type="file" name="image" value="<%= article ? article.image : '' %>" accept=".png,.jpg,.jpeg,.webp" />
 
-		<textarea placeholder="Text" name="text" rows="8"><%= article ? article.text : '' %></textarea>
+        <div>
+            <label for="title">Title</label>
+            <input id="title" type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
+        </div>
+
+        <div>
+            <label for="category">Category</label>
+            <input id="category" type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />
+        </div>
+
+        <div>
+            <label for="text">Text</label>
+            <textarea id="text" placeholder="Text" name="text" rows="8"><%= article ? article.text : '' %></textarea>
+        </div>
+
+        <div>
+            <label class="button button-sm button-dark cursor-pointer" for="image">Upload image</label>
+            <input id="image" class="!hidden" type="file" name="image" value="<%= article ? article.image : '' %>"
+                accept=".png,.jpg,.jpeg,.webp" hidden />
+        </div>
         
 		<button class="button button-base button-primary" type="submit"><%= article ? 'Save' : 'Create' %></button>
 	</form>
