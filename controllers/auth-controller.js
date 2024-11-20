@@ -10,19 +10,19 @@ class Auth {
 
 		if (!user.name || !user.email || !user.password || !user.repeatPassword) {
             req.flash('error', 'All fields are required!')
-            return res.redirect('/auth/register')
+            return res.redirect('back')
         }
 
 		if (user.password !== user.repeatPassword) {
             req.flash('error', 'Passwords do not match!')
-            return res.redirect('/auth/register')
+            return res.redirect('back')
         }
 
 		const foundUser = await User.find({ email: user.email })
 
 		if (foundUser) {
             req.flash('error', 'User already exists!')
-            return res.redirect('/auth/register')
+            return res.redirect('back')
         }
 
 		user.password = await User.hashPassword(user.password)
@@ -45,21 +45,21 @@ class Auth {
 
 		if (!user.email || !user.password) {
             req.flash('error', 'Invalid email or password!')
-            return res.redirect('/auth/login')
+            return res.redirect('back')
         }
 
 		const foundUser = await User.find({ email: user.email })
 
 		if (!foundUser) {
             req.flash('error', 'User not found!')
-            return res.redirect('/auth/login')
+            return res.redirect('back')
         }
 
 		const isPasswordValid = await User.comparePasswords(user.password, foundUser.password)
 
 		if (!isPasswordValid) {
             req.flash('error', 'Invalid email or password!')
-            return res.redirect('/auth/login')
+            return res.redirect('back')
         }
 
 		delete foundUser.password

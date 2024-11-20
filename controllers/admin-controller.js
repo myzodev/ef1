@@ -19,7 +19,7 @@ class Admin {
 
         if (password !== repeatPassword) {
             req.flash('error', 'Passwords do not match!')
-            return res.redirect('/admin/profile')
+            return res.redirect('back')
         }
 
         if (password) {
@@ -28,7 +28,7 @@ class Admin {
 
         if (!name || !email) {
             req.flash('error', 'All fields are required!')
-            return res.redirect('/admin/profile')
+            return res.redirect('back')
         }
 
         const updatedUser = await User.update({ name, email, password, avatar, id: req.session.user.id })
@@ -37,7 +37,7 @@ class Admin {
 
         req.session.user = updatedUser
         req.flash('success', 'Profile updated successfully!')
-        res.redirect('/admin/profile')
+        res.redirect('back')
     }
 }
 

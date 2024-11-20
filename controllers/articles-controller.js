@@ -16,7 +16,7 @@ class Articles {
 
 		if (!title || !text || !category || !image) {
             req.flash('error', 'All fields are required!')
-            return res.redirect('/blog/create')
+            return res.redirect('back')
         }
 
 		const userID = req.session.user.id
