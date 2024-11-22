@@ -10,6 +10,7 @@ import defaultRoutes from './routes/default-routes.js'
 import adminRoutes from './routes/admin-routes.js'
 import authRoutes from './routes/auth-routes.js'
 import articleRoutes from './routes/article-routes.js'
+import commentRoutes from './routes/comment-routes.js'
 
 dotenv.config()
 
@@ -73,6 +74,7 @@ app.use('/', defaultRoutes)
 app.use('/admin', adminRoutes)
 app.use('/auth', authRoutes)
 app.use('/blog', articleRoutes)
+app.use('/comment', commentRoutes)
 
 app.use((req, res) => {
 	res.status(404).render('errors/404', { activeNav: '404' })

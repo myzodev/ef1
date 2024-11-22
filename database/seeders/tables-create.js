@@ -42,6 +42,18 @@ const createTables = async () => {
             );
         `)
 
+        // Create comments table
+		await connection.query(`
+            CREATE TABLE IF NOT EXISTS comments (
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                user_id INT NOT NULL,
+                article_id INT NOT NULL,
+                text TEXT NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (article_id) REFERENCES articles(id)
+            );
+        `)
+
 		console.log('Tables created successfully')
 	} catch (error) {
 		console.error('Error creating tables:', error)

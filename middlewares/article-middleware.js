@@ -8,7 +8,8 @@ export const checkPermissionsToEditArticle = async (req, res, next) => {
 
 	if (article.user_id === currentUser.id) return next()
 
-	res.redirect('/blog')
+	req.flash('error', 'You do not have permission to edit this article!')
+    res.redirect('back')
 }
 
 export const checkPermissionsToDeleteArticle = async (req, res, next) => {
@@ -20,5 +21,6 @@ export const checkPermissionsToDeleteArticle = async (req, res, next) => {
     if (currentUser.is_admin) return next()
 	if (article.user_id === currentUser.id) return next()
 
-	res.redirect('/blog')
+	req.flash('error', 'You do not have permission to delete this article!')
+    res.redirect('back')
 }

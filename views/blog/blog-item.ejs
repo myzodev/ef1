@@ -40,6 +40,62 @@
 		<h2 class="mt-40 mb-24 text-neutral-900"><%= article.title %></h2>
 		<p><%- article.text %></p>
 	</article>
+
+    <footer class="p-24 mt-112 rounded-16 bg-neutral-20">
+        <header class="gap-16 flex items-center">
+            <h4>Comments</h4>
+            <p class="text-subheading"><%= comments.length %></p>
+        </header>
+
+        <% if (locals.user) { %>
+            <form class="mt-24 gap-8 flex flex-col" action="/comment/create" method="POST">
+                <input type="hidden" name="articleID" value="<%= article.id %>" hidden >
+    
+                <div>
+                    <label for="text">Text</label>
+                    <textarea id="text" name="text" placeholder="Comment..." rows="6"></textarea>
+                </div>
+            
+                <button class="button button-base button-primary" type="submit">Post comment</button>
+            </form>
+        <% } %>
+
+        <ul>
+            <% if (comments.length) { %>
+                <ul class="mt-16">
+                    <% comments.forEach(comment=> { %>
+                        <li class="py-24 last:pb-0 border-t first:border-t-0 border-neutral-40">
+                            <div class="mb-8 flex justify-between items-center">
+                                <div class="gap-8 flex items-center">
+                                    <figure class="size-40 flex justify-center items-center shrink-0 rounded-full overflow-hidden bg-neutral-30">
+                                        <% if (comment.user_avatar) { %>
+                                            <img class="object-cover" src="<%= comment.user_avatar %>" alt="Profile picture">
+                                        <% } else { %>
+                                            <img class="size-24" src="/images/icons/user.svg" alt="User icon">
+                                        <% } %>
+                                    </figure>
+
+                                    <p class="font-semibold">
+                                        <%= comment.user_name %>
+                                    </p>
+                                </div>
+
+                                <% if (comment.user_id == locals.user.id || locals.user.is_admin) { %>
+                                    <form action="/comment/<%= comment.id %>/delete" method="POST">
+                                        <button class="button button-xs button-error" type="submit">Delete comment</button>
+                                    </form>
+                                <% } %>
+                            </div>
+
+                            <p>
+                                <%= comment.text %>
+                            </p>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </ul>
+    </footer>
 </section>
 
 <%- include('../includes/blocks/section-explore') %>

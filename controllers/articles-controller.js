@@ -1,4 +1,5 @@
 import Article from '../models/article-model.js'
+import Comment from '../models/comment-model.js'
 
 class Articles {
 	static index = async (req, res) => {
@@ -34,7 +35,9 @@ class Articles {
             return res.status(404).render('errors/404', { activeNav: '404' })
         }
 
-		res.render('blog/blog-item', { activeNav: 'blog-item', article })
+        const comments = await Comment.find({ article_id: article.id })
+
+		res.render('blog/blog-item', { activeNav: 'blog-item', article, comments })
 	}
 
 	static articleItemEdit = async (req, res) => {
