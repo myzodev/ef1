@@ -45,6 +45,31 @@ class Admin {
             res.redirect('back')
         }
     }
+
+    static profileUsers = async (req, res) => {
+        try {
+            const users = await User.find()
+            res.render('admin/users', { activeNav: 'admin', users })
+        } catch (error) {
+            console.error('Error fetching users:', error)
+            req.flash('error', 'An error occurred while fetching users. Please try again.')
+            res.redirect('back')
+        }
+    }
+
+    static profileUsersDeletePost = async (req, res) => {
+        try {
+            const { id } = req.params
+
+            await User.findByIDAndDelete(id)
+            req.flash('success', 'User deleted successfully!')
+            res.redirect('back')
+        } catch (error) {
+            console.error('Error deleting user:', error)
+            req.flash('error', 'An error occurred while deleting the user. Please try again.')
+            res.redirect('back')
+        }
+    }
 }
 
 export default Admin

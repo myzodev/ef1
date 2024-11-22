@@ -89,6 +89,12 @@ class User {
 		return updatedUser[0]
 	}
 
+    static findByIDAndDelete = async (id) => {
+        await db.query('DELETE FROM comments WHERE user_id = ?', [id])
+        await db.query('DELETE FROM articles WHERE user_id = ?', [id])
+        await db.query('DELETE FROM users WHERE id = ?', [id])
+    }
+
 	static hashPassword = async (password) => {
 		const salt = await bcrypt.genSalt(8)
 		return await bcrypt.hash(password, salt)

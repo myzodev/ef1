@@ -1,0 +1,41 @@
+<section class="container pt-112">
+    <header class="mb-40 gap-16 flex items-center">
+        <h2 class="shrink-0">Users</h2>
+        <div class="w-full h-10 bg-primary-300"></div>
+    </header>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left overflow-hidden rounded-16 border border-neutral-30">
+            <thead class="bg-neutral-20">
+                <tr>
+                    <th class="p-16 text-sm" scope="col">ID</th>
+                    <th class="p-16 text-sm" scope="col">Name</th>
+                    <th class="p-16 text-sm" scope="col">Email</th>
+                    <th class="p-16 text-sm" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr class="even:bg-neutral-20">
+                        <th class="p-16" scope="row">
+                            <%= user.id %>
+                        </th>
+                        <td class="p-16">
+                            <%= user.name %>
+                        </td>
+                        <td class="p-16">
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <% if (!user.is_admin) { %>
+                                <form action="/admin/users/<%= user.id %>/delete" method="POST">
+                                    <button class="button button-xs button-error">Delete</button>
+                                </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>

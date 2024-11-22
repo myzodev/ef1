@@ -14,5 +14,15 @@ export const checkUserLoggedIn = (req, res, next) => {
 		return next()
 	}
 
+    req.flash('error', 'You must be logged in to access this page')
 	res.redirect('/auth/login')
+}
+
+export const checkUserPermissions = (req, res, next) => {
+    const currentUser = req.session.user
+
+    if (currentUser.is_admin) return next()
+
+    req.flash('error', 'You do not have permission to access this page')
+	res.redirect('/admin')
 }
