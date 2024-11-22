@@ -24,11 +24,9 @@ class Article {
 
 		const { keys, values } = generateKeysValues(data)
 
-		// Qualify ambiguous column names with the table name
 		query += keys.map((key) => `articles.${key} = ?`).join(' AND ')
 		queryParams.push(...values)
 
-		// Add LIMIT if amount is provided
 		if (amount) {
 			query += ` LIMIT ?`
 			queryParams.push(amount)
@@ -95,8 +93,9 @@ class Article {
         return article;
     }
 
-	static findBySlugAndDelete = async (slug) => {
-		await db.query('DELETE FROM articles WHERE slug = ?', [slug])
+	static findByIDAndDelete = async (id) => {
+        await db.query('DELETE FROM comments WHERE article_id = ?', [id])
+		await db.query('DELETE FROM articles WHERE id = ?', [id])
 	}
 }
 

@@ -24,11 +24,9 @@ class Comment {
 
 		const { keys, values } = generateKeysValues(data)
 
-		// Qualify ambiguous column names with the table name
 		query += keys.map((key) => `comments.${key} = ?`).join(' AND ')
 		queryParams.push(...values)
 
-		// Add LIMIT if amount is provided
 		if (amount) {
 			query += ` LIMIT ?`
 			queryParams.push(amount)

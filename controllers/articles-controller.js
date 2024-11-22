@@ -64,8 +64,8 @@ class Articles {
             const article = await Article.find({ id })
             res.render('blog/blog-form', { activeNav: 'blog-item', article })
         } catch (error) {
-            console.error('Error rendering article edit form:', error)
-            req.flash('error', 'An error occurred while rendering the article edit form. Please try again.')
+            console.error('Error rendering article:', error)
+            req.flash('error', 'An error occurred while rendering the article. Please try again.')
             res.redirect('back')            
         }
     }
@@ -101,9 +101,9 @@ class Articles {
 
     static articleItemDeletePost = async (req, res) => {
         try {
-            const { slug } = req.params
+            const { id } = req.params
     
-            await Article.findBySlugAndDelete(slug)
+            await Article.findByIDAndDelete(id)
     
             req.flash('success', 'Article has been deleted successfully!')
             res.redirect('/blog')

@@ -21,11 +21,9 @@ class User {
 
 		const { keys, values } = generateKeysValues(data)
 
-		// Build the WHERE clause dynamically
 		query += keys.map((key) => `users.${key} = ?`).join(' AND ')
 		queryParams.push(...values)
 
-		// Add LIMIT if amount is provided
 		if (amount) {
 			query += ` LIMIT ?`
 			queryParams.push(amount)
