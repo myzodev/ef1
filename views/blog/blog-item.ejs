@@ -48,7 +48,7 @@
         </header>
 
         <% if (locals.user) { %>
-            <form class="mt-24 gap-8 flex flex-col" action="/comment/create" method="POST">
+            <form class="mt-24 mb-16 gap-8 flex flex-col" action="/comment/create" method="POST">
                 <input type="hidden" name="articleID" value="<%= article.id %>" hidden >
     
                 <div>
@@ -62,7 +62,7 @@
 
         <ul>
             <% if (comments.length) { %>
-                <ul class="mt-16">
+                <ul>
                     <% comments.forEach(comment=> { %>
                         <li class="py-24 last:pb-0 border-t first:border-t-0 border-neutral-40">
                             <div class="mb-8 flex justify-between items-center">
@@ -80,7 +80,7 @@
                                     </p>
                                 </div>
 
-                                <% if (comment.user_id == locals.user.id || locals.user.is_admin) { %>
+                                <% if (locals.user && (comment.user_id == locals.user.id || locals.user.is_admin)) { %>
                                     <form action="/comment/<%= comment.id %>/delete" method="POST">
                                         <button class="button button-xs button-error" type="submit">Delete comment</button>
                                     </form>
