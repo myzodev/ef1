@@ -4,11 +4,11 @@
         <div class="w-full h-10 bg-primary-300"></div>
     </header>
 
-    <div class="gap-16 grid grid-cols-2">
+    <div class="gap-16 grid grid-cols-1 md:grid-cols-2">
         <% if (locals.user.is_admin) { %>
-            <a class="p-32 text-subheading text-center font-semibold rounded-16 bg-neutral-20 hover:bg-neutral-30 transition-colors" href="/admin/users">Users</a>
+            <a class="py-40 text-subheading text-center font-semibold rounded-16 bg-neutral-20 hover:bg-neutral-30 transition-colors" href="/admin/users">Users</a>
         <% } %>
         
-        <a class="p-32 text-subheading text-center font-semibold rounded-16 bg-neutral-20 hover:bg-neutral-30 transition-colors" href="/admin/profile">Profile settings</a>
+        <a class="py-40 text-subheading text-center font-semibold rounded-16 bg-neutral-20 hover:bg-neutral-30 transition-colors" href="/admin/profile">Profile settings</a>
     </div>
 </section>
