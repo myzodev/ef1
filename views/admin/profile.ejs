@@ -5,34 +5,47 @@
     </header>
 
     <form 
-        class="gap-8 flex flex-col" 
+        class="gap-8 flex flex-col items-start" 
         action="/admin/profile/edit"
         enctype="multipart/form-data" 
         method="POST"
     >
-        <div>
+        <div class="w-full">
             <label for="name">Name</label>
             <input id="name" type="text" placeholder="Name" name="name" value="<%= locals.user.name %>" />
         </div>
 
-        <div>
+        <div class="w-full">
             <label for="email">Email</label>
             <input id="email" type="email" placeholder="Email" name="email" value="<%= locals.user.email %>" />
         </div>
 
-        <div>
+        <div class="w-full">
             <label for="password">Password</label>
             <input id="password" type="password" placeholder="New password" name="password" />
         </div>
 
-        <div>
+        <div class="w-full">
             <label for="repeatPassword">Repeat password</label>
             <input id="repeatPassword" type="password" placeholder="Repeat new password" name="repeatPassword" />
         </div>
 
-        <div>
-            <label class="button button-sm button-dark cursor-pointer" for="avatar">Upload avatar</label>
-            <input id="avatar" class="!hidden" type="file" name="avatar" accept=".png,.jpg,.jpeg,.webp" hidden />
+        <div class="my-8 gap-8 flex items-center">
+            <% if (locals.user.avatar) { %>
+                <figure class="size-80 rounded-8 overflow-hidden">
+                    <img class="object-cover" src="<%= locals.user.avatar %>" alt="Profile picture">
+                </figure>
+            <% } %>
+
+            <div>
+                <label class="button button-sm button-dark mb-0 cursor-pointer" for="avatar">
+                    <%= locals.user.avatar ? 'Change profile image' : 'Upload profile image' %>
+                </label>
+                
+                <smal class="block text-neutral-200">Max 6MB</small>
+
+                <input id="avatar" class="!hidden" type="file" name="avatar" accept=".png,.jpg,.jpeg,.webp" hidden />
+            </div>
         </div>
 
         <button class="button button-base button-primary" type="submit">Save changes</button>

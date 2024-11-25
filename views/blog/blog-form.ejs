@@ -11,33 +11,45 @@
 	</header>
 
 	<form
-		class="gap-8 flex flex-col"
+		class="gap-8 flex flex-col items-start"
 		action="<%= article ? `/blog/${article.slug}/${article.id}/edit` : '/blog/create' %>"
 		enctype="multipart/form-data"
 		method="POST"
 	>
 
-        <div>
+        <div class="w-full">
             <label for="title">Title</label>
             <input id="title" type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
         </div>
 
-        <div>
+        <div class="w-full">
             <label for="category">Category</label>
             <input id="category" type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />
         </div>
 
-        <div>
+        <div class="w-full flex flex-col">
             <label for="text">Text</label>
             <textarea id="text" placeholder="Text" name="text" rows="8"><%= article ? article.text : '' %></textarea>
         </div>
 
-        <div>
-            <label class="button button-sm button-dark cursor-pointer" for="image">Upload image</label>
-            <input id="image" class="!hidden" type="file" name="image" value="<%= article ? article.image : '' %>"
-                accept=".png,.jpg,.jpeg,.webp" hidden />
+        <div class="my-8 gap-8 flex items-center">
+            <% if (article) { %>
+                <figure class="size-80 rounded-8 overflow-hidden">
+                    <img class="object-cover" src="<%= article.image %>" alt="<%= article.title %>">
+                </figure>
+            <% } %>
+
+            <div>
+                <label class="button button-sm button-dark mb-0 cursor-pointer" for="image">
+                    <%= article ? 'Change image' : 'Upload image' %>
+                </label>
+
+                <smal class="block text-neutral-200">Max 6MB</small>
+
+                <input id="image" class="!hidden" type="file" name="image" value="<%= article ? article.image : '' %>" accept=".png,.jpg,.jpeg,.webp" hidden />
+            </div>
         </div>
-        
-		<button class="button button-base button-primary" type="submit"><%= article ? 'Save' : 'Create' %></button>
+
+        <button class="button button-base button-primary" type="submit"><%= article ? 'Save changes' : 'Create article' %></button>
 	</form>
 </section>
