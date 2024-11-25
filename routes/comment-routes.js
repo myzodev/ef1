@@ -1,5 +1,5 @@
 import express from 'express'
-import Comments from '../controllers/comment-controller.js'
+import Comments from '../controllers/comments-controller.js'
 import { checkUserLoggedIn } from '../middlewares/auth-middleware.js'
 import { checkPermissionsToDeleteComment } from '../middlewares/comment-middleware.js'
 

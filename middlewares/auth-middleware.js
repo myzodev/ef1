@@ -18,7 +18,7 @@ export const checkUserLoggedIn = (req, res, next) => {
 	res.redirect('/auth/login')
 }
 
-export const checkUserPermissions = (req, res, next) => {
+export const checkUserIsAdmin = (req, res, next) => {
     const currentUser = req.session.user
 
     if (currentUser.is_admin) return next()
