@@ -1,6 +1,6 @@
 # EF1
 
-Fully responsive CRUD application. Created as a task for a university.
+Fully responsive CRUD application. Developed as part of a university assignment.
 
 ## Tech
 
