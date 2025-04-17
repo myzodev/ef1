@@ -10,31 +10,25 @@ class Comments {
                 return res.redirect('back')
             }
     
-            await Comment.create({ userID: req.session.user.id, articleID, text })
+            const newComment = await Comment.create({ userID: req.session.user.id, articleID, text })
     
-            req.flash('success', 'Comment created successfully')
-            res.redirect('back')
+            res.status(201).json(newComment)
         } catch (error) {
             console.error('Error creating comment:', error)
-            req.flash('error', 'An error occurred while creating the comment. Please try again.')
-            res.redirect('back')            
         }
 	}
 
 	static commentItemDeletePost = async (req, res) => {
         try {
             const { id } = req.params
-    
+
             await Comment.findByIDAndDelete(id)
-    
-            req.flash('success', 'Comment deleted successfully')
-            res.redirect('back')
+
+            res.status(200).json({ message: 'Comment deleted successfully' }) // actually sends the response
         } catch (error) {
-            console.error('Error deleting comment:', error)
-            req.flash('error', 'An error occurred while deleting the comment. Please try again.')
-            res.redirect('back')
+            res.status(404).json({ error: 'Comment not found' })
         }
-	}
+    }
 }
 
 export default Comments

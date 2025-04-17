@@ -44,11 +44,11 @@
     <footer class="p-24 mt-112 rounded-16 bg-neutral-20">
         <header class="gap-16 flex items-center">
             <h4>Comments</h4>
-            <p class="text-subheading"><%= comments.length %></p>
+            <p class="comments-counter text-subheading"><%= comments.length %></p>
         </header>
 
         <% if (locals.user) { %>
-            <form class="mt-24 mb-16 gap-8 flex flex-col" action="/comment/create" method="POST">
+            <form id="comment-form" class="mt-24 mb-16 gap-8 flex flex-col">
                 <input type="hidden" name="articleID" value="<%= article.id %>" hidden >
     
                 <div>
@@ -60,39 +60,35 @@
             </form>
         <% } %>
 
-        <ul>
+        <ul id="comments-list">
             <% if (comments.length) { %>
-                <ul>
-                    <% comments.forEach(comment=> { %>
-                        <li class="py-24 last:pb-0 border-t first:border-t-0 border-neutral-40">
-                            <div class="mb-8 flex justify-between items-center">
-                                <div class="gap-8 flex items-center">
-                                    <figure class="size-40 flex justify-center items-center shrink-0 rounded-full overflow-hidden bg-neutral-30">
-                                        <% if (comment.user_avatar) { %>
-                                            <img class="object-cover" src="<%= comment.user_avatar %>" alt="Profile picture">
-                                        <% } else { %>
-                                            <img class="size-24" src="/images/icons/user.svg" alt="User icon">
-                                        <% } %>
-                                    </figure>
+                <% comments.forEach(comment=> { %>
+                    <li class="py-24 last:pb-0 border-t first:border-t-0 border-neutral-40">
+                        <div class="mb-8 flex justify-between items-center">
+                            <div class="gap-8 flex items-center">
+                                <figure class="size-40 flex justify-center items-center shrink-0 rounded-full overflow-hidden bg-neutral-30">
+                                    <% if (comment.user_avatar) { %>
+                                        <img class="object-cover" src="<%= comment.user_avatar %>" alt="Profile picture">
+                                    <% } else { %>
+                                        <img class="size-24" src="/images/icons/user.svg" alt="User icon">
+                                    <% } %>
+                                </figure>
 
-                                    <p class="font-semibold">
-                                        <%= comment.user_name %>
-                                    </p>
-                                </div>
-
-                                <% if (locals.user && (comment.user_id == locals.user.id || locals.user.is_admin)) { %>
-                                    <form action="/comment/<%= comment.id %>/delete" method="POST">
-                                        <button class="button button-xs button-error" type="submit">Delete comment</button>
-                                    </form>
-                                <% } %>
+                                <p class="font-semibold">
+                                    <%= comment.user_name %>
+                                </p>
                             </div>
 
-                            <p>
-                                <%= comment.text %>
-                            </p>
-                        </li>
-                    <% }) %>
-                </ul>
+                            <% if (locals.user && (comment.user_id == locals.user.id || locals.user.is_admin)) { %>
+                                <button class="comment-delete-button button button-xs button-error" type="button" data-comment-id="<%= comment.id %>">Delete comment</button>
+                            <% } %>
+                        </div>
+
+                        <p>
+                            <%= comment.text %>
+                        </p>
+                    </li>
+                <% }) %>
             <% } %>
         </ul>
     </footer>

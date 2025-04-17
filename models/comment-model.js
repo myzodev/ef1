@@ -1,4 +1,5 @@
 import db from '../database/db.js'
+import User from './user-model.js'
 import { generateKeysValues } from '../utils/model.js'
 
 class Comment {
@@ -40,12 +41,26 @@ class Comment {
 	}
 
 	static create = async (comment) => {
-		await db.query('INSERT INTO comments (user_id, article_id, text) VALUES (?, ?, ?)', [
-			comment.userID,
-			comment.articleID,
-			comment.text,
-		])
-	}
+        const [result] = await db.query(
+            'INSERT INTO comments (user_id, article_id, text) VALUES (?, ?, ?)',
+            [
+                comment.userID,
+                comment.articleID,
+                comment.text,
+            ]
+        );
+
+        const createdBy = await User.find({ id: comment.userID })
+
+        delete comment.userID
+
+        return {
+            id: result.insertId,
+            ...comment,
+            user: { ...createdBy }
+        };
+    };
+
 
 	static findByIDAndDelete = async (id) => {
         await db.query('DELETE FROM comments WHERE id = ?', [id])

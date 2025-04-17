@@ -19,17 +19,17 @@
 
         <div class="w-full">
             <label for="title">Title</label>
-            <input id="title" type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" />
+            <input id="title" type="text" placeholder="Title" name="title" value="<%= article ? article.title : '' %>" required />
         </div>
 
         <div class="w-full">
             <label for="category">Category</label>
-            <input id="category" type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" />
+            <input id="category" type="text" placeholder="Category" name="category" value="<%= article ? article.category : '' %>" required />
         </div>
 
         <div class="w-full flex flex-col">
             <label for="text">Text</label>
-            <textarea id="text" placeholder="Text" name="text" rows="8"><%= article ? article.text : '' %></textarea>
+            <textarea id="text" placeholder="Text" name="text" rows="8" required><%= article ? article.text : '' %></textarea>
         </div>
 
         <div class="my-8 gap-8 flex items-center">

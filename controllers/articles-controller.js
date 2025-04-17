@@ -22,7 +22,7 @@ class Articles {
             const { title, text, category } = req.body
             const image = `/uploads/${req.file?.filename}`
 
-            if (!title || !text || !category || !image) {
+            if (!title || !text || !category || !req.file.filename) {
                 req.flash('error', 'All fields are required!')
                 return res.redirect('back')
             }
