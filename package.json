@@ -9,7 +9,7 @@
 		"start": "node server.js",
 		"watch:server": "nodemon server.js",
 		"watch:mix": "mix watch",
-		"db:seed": "node database/seed.js"
+		"db:seed": "node app/database/seed.js"
 	},
 	"devDependencies": {
 		"@tailwindcss/aspect-ratio": "^0.4.2",

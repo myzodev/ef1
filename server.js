@@ -6,11 +6,11 @@ import flash from 'connect-flash'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
-import defaultRoutes from './routes/default-routes.js'
-import adminRoutes from './routes/admin-routes.js'
-import authRoutes from './routes/auth-routes.js'
-import articleRoutes from './routes/article-routes.js'
-import commentRoutes from './routes/comment-routes.js'
+import defaultRoutes from './app/routes/default-routes.js'
+import adminRoutes from './app/routes/admin-routes.js'
+import authRoutes from './app/routes/auth-routes.js'
+import articleRoutes from './app/routes/article-routes.js'
+import commentRoutes from './app/routes/comment-routes.js'
 
 dotenv.config()
 
@@ -58,8 +58,8 @@ app.use((req, res, next) => {
 })
 
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'views'))
-app.set('layout', path.join(__dirname, 'views/layouts/default'))
+app.set('views', path.join(__dirname, 'src/views'))
+app.set('layout', path.join(__dirname, 'src/views/layouts/default'))
 
 app.use('/', defaultRoutes)
 app.use('/admin', adminRoutes)

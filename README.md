@@ -16,9 +16,9 @@ All commands are run from the root of the project, from a terminal:
 
 | **Command**             | **Action**                                                          |
 |-------------------------|---------------------------------------------------------------------|
-| `npm install`           | Installs dependencies.                                              |
-| `npm run dev`           | Runs both `watch-server` and `watch-mix` in parallel.               |
-| `npm run watch-server`  | Starts the server with `nodemon` for automatic restarts on changes. |
-| `npm run watch-mix`     | Watches and compiles assets using Laravel Mix.                      |
-| `npm run db-seed`       | Seeds the database with initial data.                               |
+| `npm install dev`       | Installs dependencies.                                              |
 | `npm run build`         | Builds site assets to `./public/`.                                  |
+| `npm run start`         | Stars node server.                                                  |
+| `npm run watch:server`  | Starts the server with `nodemon` for automatic restarts on changes. |
+| `npm run watch:mix`     | Watches and compiles assets using Laravel Mix.                      |
+| `npm run db:seed`       | Seeds the database with initial data.                               |
