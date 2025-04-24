@@ -33,7 +33,10 @@ class Auth {
     
             req.session.user = newUser
             req.flash('success', 'You have been registered successfully!')
-            res.redirect('/')
+
+            req.session.save(() => {
+                res.redirect('/')
+            })
         } catch (error) {
             console.error('Error registering user:', error)
             req.flash('error', 'An error occurred while registering the user. Please try again.')
@@ -72,7 +75,10 @@ class Auth {
     
             req.session.user = user
             req.flash('success', 'You have been logged in successfully!')
-            res.redirect('/')
+            
+            req.session.save(() => {
+                res.redirect('/')
+            })
         } catch (error) {
             console.error('Error logging in user:', error)
             req.flash('error', 'An error occurred while logging in the user. Please try again.')
@@ -83,7 +89,9 @@ class Auth {
 	static logoutPost = (req, res) => {
 		req.session.user = null
         req.flash('success', 'You have been logged out successfully!')
-		res.redirect('/')
+		req.session.save(() => {
+            res.redirect('/')
+        })
 	}
 }
 
